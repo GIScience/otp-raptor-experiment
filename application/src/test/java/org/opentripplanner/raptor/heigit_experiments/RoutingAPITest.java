@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.opentripplanner.raptor._data.transit.TestRoute.route;
 import static org.opentripplanner.raptor._data.transit.TestTripPattern.pattern;
 import static org.opentripplanner.raptor._data.transit.TestTripSchedule.schedule;
+import static org.opentripplanner.raptor.moduletests.support.RaptorModuleTestConfig.TC_MIN_DURATION;
 import static org.opentripplanner.raptor.moduletests.support.RaptorModuleTestConfig.multiCriteria;
 import static org.opentripplanner.raptor.moduletests.support.RaptorModuleTestConfig.standard;
 
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.opentripplanner.framework.time.DurationUtils;
 import org.opentripplanner.raptor.RaptorService;
 import org.opentripplanner.raptor._data.RaptorTestConstants;
 import org.opentripplanner.raptor._data.api.PathUtils;
@@ -23,6 +25,7 @@ import org.opentripplanner.raptor.api.request.RaptorRequestBuilder;
 import org.opentripplanner.raptor.configure.RaptorConfig;
 import org.opentripplanner.raptor.moduletests.support.ModuleTestDebugLogging;
 import org.opentripplanner.raptor.moduletests.support.RaptorModuleTestCase;
+import org.opentripplanner.raptor.spi.UnknownPath;
 
 /**
  * FEATURE UNDER TEST
@@ -40,18 +43,14 @@ public class RoutingAPITest implements RaptorTestConstants {
 
   /**
    * Stops: 0..3
-   *
-   * Stop on route (stop indexes):
-   *   R1:  1 - 2 - 3
-   *
-   * Schedule:
-   *   R1: 00:01 - 00:03 - 00:05
-   *
-   * Access (toStop & duration):
-   *   1  30s
-   *
-   * Egress (fromStop & duration):
-   *   3  20s
+   * <p>
+   * Stop on route (stop indexes): R1:  1 - 2 - 3
+   * <p>
+   * Schedule: R1: 00:01 - 00:03 - 00:05
+   * <p>
+   * Access (toStop & duration): 1  30s
+   * <p>
+   * Egress (fromStop & duration): 3  20s
    */
   @BeforeEach
   void setup() {
@@ -88,7 +87,25 @@ public class RoutingAPITest implements RaptorTestConstants {
   @Test
   @DisplayName("min_travel_duration")
   void minTravelDuration() {
-    RaptorModuleTestCase testCase = testCases().getFirst();
+    var duration = "4m50s";
+    var nTransfers = TX_0;
+    var earliestDepartureTime = T00_00;
+    var latestArrivalTime = T00_10;
+    int durationSec = DurationUtils.durationInSeconds(duration);
+
+    RaptorModuleTestCase testCase = RaptorModuleTestCase
+      .of()
+      .add(
+        TC_MIN_DURATION,
+        new UnknownPath<TestTripSchedule>(
+          earliestDepartureTime,
+          earliestDepartureTime + durationSec,
+          nTransfers
+        )
+          .toString()
+      )
+      .build().getFirst();
+
     assertEquals(testCase.expected(), testCase.run(raptorService, data, requestBuilder));
   }
 }
