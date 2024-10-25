@@ -3,6 +3,7 @@ package org.opentripplanner.raptor.heigit_experiments;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.opentripplanner.raptor._data.api.PathUtils.pathsToString;
 import static org.opentripplanner.raptor._data.transit.TestRoute.route;
 import static org.opentripplanner.raptor._data.transit.TestTripPattern.pattern;
 import static org.opentripplanner.raptor._data.transit.TestTripSchedule.schedule;
@@ -16,18 +17,17 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.opentripplanner.framework.time.DurationUtils;
 import org.opentripplanner.raptor.RaptorService;
 import org.opentripplanner.raptor._data.RaptorTestConstants;
 import org.opentripplanner.raptor._data.api.PathUtils;
 import org.opentripplanner.raptor._data.transit.TestAccessEgress;
 import org.opentripplanner.raptor._data.transit.TestTransitData;
 import org.opentripplanner.raptor._data.transit.TestTripSchedule;
+import org.opentripplanner.raptor.api.request.RaptorRequest;
 import org.opentripplanner.raptor.api.request.RaptorRequestBuilder;
 import org.opentripplanner.raptor.configure.RaptorConfig;
-import org.opentripplanner.raptor.moduletests.support.ModuleTestDebugLogging;
 import org.opentripplanner.raptor.moduletests.support.RaptorModuleTestCase;
-import org.opentripplanner.raptor.spi.UnknownPath;
+import org.opentripplanner.raptor.spi.RaptorTransitDataProvider;
 
 /**
  * FEATURE UNDER TEST
@@ -97,10 +97,10 @@ public class RoutingAPITest implements RaptorTestConstants {
       )
       .build().getFirst();
 
-    var result = testCase.run(raptorService, data, requestBuilder);
+    var request = testCase.withConfig(requestBuilder);
+    var response = raptorService.route(request, data);
 
-
-    assertFalse(result.isEmpty());
-    System.out.println(result);
+    assertFalse(response.noConnectionFound());
+    System.out.println(PathUtils.pathsToString(response));
   }
 }
