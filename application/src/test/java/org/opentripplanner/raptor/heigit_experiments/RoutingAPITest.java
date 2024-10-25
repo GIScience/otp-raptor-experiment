@@ -7,6 +7,7 @@ import static org.opentripplanner.raptor._data.api.PathUtils.pathsToString;
 import static org.opentripplanner.raptor._data.transit.TestRoute.route;
 import static org.opentripplanner.raptor._data.transit.TestTripPattern.pattern;
 import static org.opentripplanner.raptor._data.transit.TestTripSchedule.schedule;
+import static org.opentripplanner.raptor.api.request.RaptorProfile.MIN_TRAVEL_DURATION;
 import static org.opentripplanner.raptor.moduletests.support.RaptorModuleTestConfig.TC_MIN_DURATION;
 import static org.opentripplanner.raptor.moduletests.support.RaptorModuleTestConfig.multiCriteria;
 import static org.opentripplanner.raptor.moduletests.support.RaptorModuleTestConfig.standard;
@@ -23,11 +24,13 @@ import org.opentripplanner.raptor._data.api.PathUtils;
 import org.opentripplanner.raptor._data.transit.TestAccessEgress;
 import org.opentripplanner.raptor._data.transit.TestTransitData;
 import org.opentripplanner.raptor._data.transit.TestTripSchedule;
-import org.opentripplanner.raptor.api.request.RaptorRequest;
+import org.opentripplanner.raptor.api.model.SearchDirection;
+import org.opentripplanner.raptor.api.request.Optimization;
+import org.opentripplanner.raptor.api.request.RaptorProfile;
 import org.opentripplanner.raptor.api.request.RaptorRequestBuilder;
 import org.opentripplanner.raptor.configure.RaptorConfig;
 import org.opentripplanner.raptor.moduletests.support.RaptorModuleTestCase;
-import org.opentripplanner.raptor.spi.RaptorTransitDataProvider;
+import org.opentripplanner.raptor.moduletests.support.RaptorModuleTestConfig;
 
 /**
  * FEATURE UNDER TEST
@@ -89,15 +92,10 @@ public class RoutingAPITest implements RaptorTestConstants {
   @Test
   @DisplayName("min_travel_duration")
   void minTravelDuration() {
-    RaptorModuleTestCase testCase = RaptorModuleTestCase
-      .of()
-      .add(
-        TC_MIN_DURATION,
-        ""
-      )
-      .build().getFirst();
+    requestBuilder.profile(MIN_TRAVEL_DURATION);
+    requestBuilder.searchParams().searchOneIterationOnly();
 
-    var request = testCase.withConfig(requestBuilder);
+    var request = requestBuilder.build();
     var response = raptorService.route(request, data);
 
     assertFalse(response.noConnectionFound());
