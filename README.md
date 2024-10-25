@@ -4,6 +4,16 @@ This is a fork of [OTP](https://github.com/opentripplanner/OpenTripPlanner).
 
 We want to experiment with using OTP's raptor implementation as a standalone library.
 
+## Installation in IntelliJ
+
+- Requires Maven >= 3.6.6
+- Import the project as a Maven project or from version control (GitHub)
+- Run `mvn install`
+- Execute `Build Project` in IntelliJ
+
+Now everything should compile file and tests can be run in the IDE.
+
+
 ### Step 1: Use RaptorService (API) with simple example
 
 __Goal:__  Execute a few queries on the OTP Raptor API. Try to load timetable data via GTFS import.
