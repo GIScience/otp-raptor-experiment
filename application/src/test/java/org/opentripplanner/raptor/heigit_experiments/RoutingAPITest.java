@@ -20,10 +20,7 @@ import org.opentripplanner.raptor.api.request.RaptorRequestBuilder;
 import org.opentripplanner.raptor.configure.RaptorConfig;
 
 /**
- * FEATURE UNDER TEST
- * <p>
- * Raptor should return a path if it exists for the most basic case with one route with one trip, an
- * access and an egress path.
+ * Various examples illustrating Raptor base API usage
  */
 public class RoutingAPITest implements RaptorTestConstants {
 
@@ -40,8 +37,6 @@ public class RoutingAPITest implements RaptorTestConstants {
       .addAccessPaths(TestAccessEgress.walk(STOP_B, D30s))
       .addEgressPaths(TestAccessEgress.walk(STOP_D, D20s))
       .maxNumberOfTransfers(3)
-      .earliestDepartureTime(T00_01)
-      .latestArrivalTime(T00_30)
       .timetable(true);
     // ModuleTestDebugLogging.setupDebugLogging(data, requestBuilder);
   }
@@ -60,7 +55,12 @@ public class RoutingAPITest implements RaptorTestConstants {
     );
 
     requestBuilder.profile(STANDARD);
-    requestBuilder.searchParams().searchOneIterationOnly();
+
+    requestBuilder
+      .searchParams()
+      .earliestDepartureTime(T00_01)
+      .latestArrivalTime(T00_30)
+      .searchOneIterationOnly();
 
     var request = requestBuilder.build();
     var response = raptorService.route(request, data);
@@ -85,7 +85,11 @@ public class RoutingAPITest implements RaptorTestConstants {
     );
 
     requestBuilder.profile(STANDARD);
-    requestBuilder.searchParams().searchOneIterationOnly();
+    requestBuilder
+      .searchParams()
+      .earliestDepartureTime(T00_01)
+      .latestArrivalTime(T00_30)
+      .searchOneIterationOnly();
 
     var request = requestBuilder.build();
     var response = raptorService.route(request, data);
@@ -98,28 +102,31 @@ public class RoutingAPITest implements RaptorTestConstants {
 
   @Test
   void searchRangeRequestWithWindow() {
-    // We currently cannot really explain the meaning of a search window
+    // We currently cannot really explain the meaning of a search window in all cases
 
     data.withRoute(
       route(pattern("R1", STOP_B, STOP_C, STOP_D)).withTimetable(
-        schedule("00:01, 00:05, 00:09"),
-        schedule("00:04, 00:07, 00:11"),
-        schedule("00:15, 00:20, 00:23"),
-        schedule("00:20, 00:25, 00:29")
+        schedule("10:59, 11:03, 11:07"), // Too early departure
+        schedule("11:01, 11:05, 11:09"), // In result set: Earliest trip after EDT
+        schedule("11:04, 11:07, 11:11"), // Slower than trip in R2 that departs at same time
+        schedule("11:21, 11:25, 11:27"), // In result set: Latest trip still within LAT
+        schedule("11:25, 11:27, 11:35") // Too late arrival
       )
-    );
+    ).withRoute(route(pattern("R2", STOP_B, STOP_C, STOP_D)).withTimetable(
+      schedule("11:04, 11:05, 11:10") // In result set: Shortest trip of both R1 and R2
+    ));
 
     requestBuilder.profile(STANDARD);
     requestBuilder.searchParams()
-      .earliestDepartureTime(hm2time(0, 1))
-      .latestArrivalTime(hm2time(0, 30))
-      .searchWindowInSeconds(14*60+31);
+      .earliestDepartureTime(hm2time(11, 0))
+      .latestArrivalTime(hm2time(11, 30))
+      .searchWindowInSeconds(5 * 60);
 
     var request = requestBuilder.build();
     var response = raptorService.route(request, data);
 
     assertFalse(response.noConnectionFound());
-    // assertEquals(1, response.paths().size());
+    assertEquals(3, response.paths().size());
 
     System.out.println(PathUtils.pathsToString(response));
   }
