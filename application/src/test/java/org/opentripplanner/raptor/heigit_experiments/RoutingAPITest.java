@@ -81,4 +81,29 @@ public class RoutingAPITest implements RaptorTestConstants {
 
     System.out.println(PathUtils.pathsToString(response));
   }
+
+  @Test
+  void noTransferUnderOneMinute() {
+    data.withRoute(
+      route(pattern("R1", STOP_B, STOP_C, STOP_D)).withTimetable(
+        schedule("00:01, 00:05, 00:09"),
+        schedule("00:03, 00:06, 00:10")
+      )
+    ).withRoute(
+      route(pattern("R2", STOP_A, STOP_C, STOP_D)).withTimetable(
+        schedule("00:01, 00:06:59, 00:08")
+      )
+    );
+
+    requestBuilder.profile(STANDARD);
+    requestBuilder.searchParams().searchOneIterationOnly();
+
+    var request = requestBuilder.build();
+    var response = raptorService.route(request, data);
+
+    assertFalse(response.noConnectionFound());
+    assertEquals(1, response.paths().size());
+
+    System.out.println(PathUtils.pathsToString(response));
+  }
 }
