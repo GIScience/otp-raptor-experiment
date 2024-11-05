@@ -2,13 +2,13 @@ package org.opentripplanner.raptor.heigit_experiments;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.opentripplanner.framework.time.TimeUtils.hm2time;
 import static org.opentripplanner.raptor._data.transit.TestRoute.route;
 import static org.opentripplanner.raptor._data.transit.TestTripPattern.pattern;
 import static org.opentripplanner.raptor._data.transit.TestTripSchedule.schedule;
 import static org.opentripplanner.raptor.api.request.RaptorProfile.STANDARD;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.opentripplanner.raptor.RaptorService;
 import org.opentripplanner.raptor._data.RaptorTestConstants;
@@ -33,17 +33,6 @@ public class RoutingAPITest implements RaptorTestConstants {
     RaptorConfig.defaultConfigForTest()
   );
 
-  /**
-   * Stops: 0..3
-   * <p>
-   * Stop on route (stop indexes): R1:  1 - 2 - 3
-   * <p>
-   * Schedule: R1: 00:01 - 00:03 - 00:05
-   * <p>
-   * Access (toStop & duration): 1  30s
-   * <p>
-   * Egress (fromStop & duration): 3  20s
-   */
   @BeforeEach
   void setup() {
     requestBuilder
@@ -103,6 +92,34 @@ public class RoutingAPITest implements RaptorTestConstants {
 
     assertFalse(response.noConnectionFound());
     assertEquals(1, response.paths().size());
+
+    System.out.println(PathUtils.pathsToString(response));
+  }
+
+  @Test
+  void searchRangeRequestWithWindow() {
+    // We currently cannot really explain the meaning of a search window
+
+    data.withRoute(
+      route(pattern("R1", STOP_B, STOP_C, STOP_D)).withTimetable(
+        schedule("00:01, 00:05, 00:09"),
+        schedule("00:04, 00:07, 00:11"),
+        schedule("00:15, 00:20, 00:23"),
+        schedule("00:20, 00:25, 00:29")
+      )
+    );
+
+    requestBuilder.profile(STANDARD);
+    requestBuilder.searchParams()
+      .earliestDepartureTime(hm2time(0, 1))
+      .latestArrivalTime(hm2time(0, 30))
+      .searchWindowInSeconds(14*60+31);
+
+    var request = requestBuilder.build();
+    var response = raptorService.route(request, data);
+
+    assertFalse(response.noConnectionFound());
+    // assertEquals(1, response.paths().size());
 
     System.out.println(PathUtils.pathsToString(response));
   }
