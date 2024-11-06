@@ -24,5 +24,4 @@ class GtfsReadingTest extends GtfsTest {
     System.out.println("timetableRepository.getAllTripPatterns() = " + timetableRepository.getAllTripPatterns());
   }
 
-
 }
