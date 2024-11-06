@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.onebusaway.csv_entities.EntityHandler;
+import org.onebusaway.csv_entities.FileCsvInputSource;
 import org.onebusaway.gtfs.impl.GtfsDaoImpl;
 import org.onebusaway.gtfs.model.AgencyAndId;
 import org.onebusaway.gtfs.model.Route;
@@ -19,8 +20,12 @@ class GtfsReadWithOneBusAwayTest {
     // Code adapted from https://github.com/OneBusAway/onebusaway-gtfs-modules/blob/master/onebusaway-gtfs/src/test/java/org/onebusaway/gtfs/examples/GtfsReaderExampleMain.java
 
     GtfsReader reader = new GtfsReader();
-    var gtfsLocation = new File("./src/test/resources/gtfs/simple");
-    reader.setInputLocation(gtfsLocation);
+
+    // I did not find a simple way to hand in a reader, an input stream or a path.
+    // This probably requires a self-made implementation of CsvInputSource
+    var gtfsFolder = new File("./src/test/resources/gtfs/simple");
+    reader.setInputSource(new FileCsvInputSource(gtfsFolder));
+    reader.setInputLocation(gtfsFolder);
 
     /**
      * You can register an entity handler that listens for new objects as they
