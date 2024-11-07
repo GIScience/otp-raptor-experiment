@@ -34,6 +34,8 @@ public class RoutingAPITest implements RaptorTestConstants {
   void setup() {
     requestBuilder
       .searchParams()
+//      .addAccessPaths(TestAccessEgress.free(STOP_B))
+//      .addEgressPaths(TestAccessEgress.free(STOP_D))
       .addAccessPaths(TestAccessEgress.walk(STOP_B, D30s))
       .addEgressPaths(TestAccessEgress.walk(STOP_D, D20s))
       .maxNumberOfTransfers(3)
@@ -69,6 +71,9 @@ public class RoutingAPITest implements RaptorTestConstants {
     assertEquals(2, response.paths().size());
 
     System.out.println(PathUtils.pathsToString(response));
+
+    // Walk 30s ~ B ~ BUS R1 0:03 0:06 ~ C ~ BUS R2 0:07 0:08 ~ D ~ Walk 20s [0:02:30 0:08:20 5m50s Tₓ1]
+    // Walk 30s ~ B ~ BUS R1 0:03 0:10 ~ D ~ Walk 20s [0:02:30 0:10:20 7m50s Tₓ0]
   }
 
   @Test

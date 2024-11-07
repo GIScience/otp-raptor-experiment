@@ -1,15 +1,19 @@
 package org.opentripplanner.raptor.heigit_experiments;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.opentripplanner.framework.time.TimeUtils.hm2time;
 import static org.opentripplanner.raptor.api.request.RaptorProfile.STANDARD;
 
+import java.time.Duration;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.BitSet;
 import org.junit.jupiter.api.Test;
 import org.opentripplanner.GtfsTest;
-import org.opentripplanner.model.GenericLocation;
 import org.opentripplanner.raptor.RaptorService;
 import org.opentripplanner.raptor._data.transit.TestAccessEgress;
+import org.opentripplanner.raptor.api.path.RaptorPath;
 import org.opentripplanner.raptor.api.request.RaptorEnvironment;
 import org.opentripplanner.raptor.api.request.RaptorRequest;
 import org.opentripplanner.raptor.api.request.RaptorRequestBuilder;
@@ -34,7 +38,7 @@ class GtfsReadingAndQueryingTest extends GtfsTest {
 
   @Override
   public String getFeedName() {
-    return "gtfs/simple";
+    return "gtfs/heigit_simple";
   }
 
   @Test
@@ -63,42 +67,68 @@ class GtfsReadingAndQueryingTest extends GtfsTest {
     var transitLayer = TransitLayerMapper.map(tuningParameters, timetableRepository);
 
     System.out.println("# of stops = " + transitLayer.getStopCount());
-    int startingStop = 0;
-    int endStop = 2;
+    int startingStop = 1;
+    int endStop = 3;
     System.out.println("Access stop = " + transitLayer.getStopByIndex(startingStop));
     System.out.println("Egress stop = " + transitLayer.getStopByIndex(endStop));
 
     RaptorRequestBuilder<TripSchedule> requestBuilder = new RaptorRequestBuilder<>();
-    int edt = hm2time(11, 0);
-    int lat = hm2time(12, 0);
-    RaptorRequest<TripSchedule> request = requestBuilder
+    int edt = hm2time(0, 1);
+    int lat = hm2time(0, 30);
+    RaptorRequest<TripSchedule> raptorRequest = requestBuilder
       .profile(STANDARD)
       .searchParams()
       .earliestDepartureTime(edt)
       .latestArrivalTime(lat)
       .searchOneIterationOnly()
-      .addAccessPaths(TestAccessEgress.free(startingStop))
-      .addEgressPaths(TestAccessEgress.free(endStop))
+//      .addAccessPaths(TestAccessEgress.free(startingStop))
+//      .addEgressPaths(TestAccessEgress.free(endStop))
+      .addAccessPaths(TestAccessEgress.walk(startingStop, 30))
+      .addEgressPaths(TestAccessEgress.walk(endStop, 20))
       .maxNumberOfTransfers(3)
       .timetable(true)
       .build();
 
-    RouteRequest routeRequest = new RouteRequest();
-    routeRequest.setFrom(GenericLocation.fromStopId("START", "FEED:A", startingStop + ""));
-    routeRequest.setTo(GenericLocation.fromStopId("END", "FEED:C", startingStop + ""));
+    RouteRequest routeRequest = new RouteRequest().withPreferences(
+      builder -> {
+        builder.withTransfer(b -> b.withSlack(Duration.ofSeconds(60)));
+        builder.withTransit(b -> {
+          b.withDefaultBoardSlackSec(0);
+          b.withDefaultAlightSlackSec(0);
+        });
+      }
+    );
+    //routeRequest.setFrom(GenericLocation.fromStopId("B", "gtfs/heigit_simple", "B"));
+    //routeRequest.setTo(GenericLocation.fromStopId("D", "gtfs/heigit_simple", "D"));
 
-    var raptorDataProvider = createRequestTransitDataProvider(transitLayer, routeRequest);
+    RaptorRoutingRequestTransitData raptorDataProvider = createRequestTransitDataProvider(transitLayer, routeRequest);
 
-    var result = raptorService.route(request, raptorDataProvider);
+    System.out.println("transfer slack = " + raptorDataProvider.slackProvider().transferSlack());
 
-    System.out.println("result.paths() = " + result.paths());
+    //System.out.println("Stop START = " + raptorDataProvider.stopNameResolver().apply(startingStop));
+    //System.out.println("Stop END   = " + raptorDataProvider.stopNameResolver().apply(endStop));
+
+    //RaptorRoute<TripSchedule> route0 = raptorDataProvider.getRouteForIndex(0);
+    //System.out.println("Route 0 = " + route0);
+    //RaptorRoute<TripSchedule> route1 = raptorDataProvider.getRouteForIndex(1);
+    //System.out.println("Route 1 = " + route1);
+
+    //System.out.println(route0.timetable());
+
+    var response = raptorService.route(raptorRequest, raptorDataProvider);
+
+    for (RaptorPath<TripSchedule> path : response.paths()) {
+      System.out.println("path = " + path);
+    }
+    
+    assertEquals(2, response.paths().size());
   }
 
   private RaptorRoutingRequestTransitData createRequestTransitDataProvider(TransitLayer transitLayer, RouteRequest routeRequest) {
     return new RaptorRoutingRequestTransitData(
       transitLayer,
       TransitGroupPriorityService.empty(),
-      ZonedDateTime.now(),
+      ZonedDateTime.of(2024, 10, 7, 0, 0, 0, 0, ZoneId.of("UTC")),
       0,
       0,
       new TestTransitDataProviderFilter(),

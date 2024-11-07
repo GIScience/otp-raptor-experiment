@@ -1,0 +1,5 @@
+stop_id,stop_name,stop_lat,stop_lon,wheelchair_boarding,location_type,parent_station
+A,A,40,-73.00,1,0,
+B,B,40,-73.01,1,0,
+C,C,40,-73.02,2,0,
+D,D,40,-73.03,1,0,
