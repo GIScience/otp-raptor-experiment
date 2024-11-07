@@ -1,11 +1,16 @@
 package org.opentripplanner.raptor.heigit_experiments;
 
+import static org.opentripplanner.framework.time.TimeUtils.hm2time;
+import static org.opentripplanner.raptor.api.request.RaptorProfile.STANDARD;
+
 import java.time.ZonedDateTime;
 import org.junit.jupiter.api.Test;
 import org.opentripplanner.GtfsTest;
 import org.opentripplanner.raptor.RaptorService;
+import org.opentripplanner.raptor._data.transit.TestAccessEgress;
 import org.opentripplanner.raptor.api.request.RaptorEnvironment;
 import org.opentripplanner.raptor.api.request.RaptorRequest;
+import org.opentripplanner.raptor.api.request.RaptorRequestBuilder;
 import org.opentripplanner.raptor.api.request.RaptorTuningParameters;
 import org.opentripplanner.raptor.configure.RaptorConfig;
 import org.opentripplanner.routing.algorithm.raptoradapter.transit.TransitLayer;
@@ -41,19 +46,38 @@ class GtfsReadingAndQueryingTest extends GtfsTest {
   void executeRoutingRequestFromGtfsData() {
 
     var raptorService = new RaptorService<>(new RaptorConfig<TripSchedule>(
-      new RaptorTuningParameters() {}, new RaptorEnvironment() {}
+      new RaptorTuningParameters() {
+      }, new RaptorEnvironment() {
+    }
     ));
 
     TransitTuningParameters tuningParameters = RouterConfig.DEFAULT.transitTuningConfig();
     var transitLayer = TransitLayerMapper.map(tuningParameters, timetableRepository);
 
-    System.out.println("transitLayer.getStopCount() = " + transitLayer.getStopCount());
+    System.out.println("# of stops = " + transitLayer.getStopCount());
+    int startingStop = 0;
+    int endStop = 2;
+    System.out.println("Access stop = " + transitLayer.getStopByIndex(startingStop));
+    System.out.println("Egress stop = " + transitLayer.getStopByIndex(endStop));
+
+    RaptorRequestBuilder<TripSchedule> requestBuilder = new RaptorRequestBuilder<>();
+    int edt = hm2time(11, 0);
+    int lat = hm2time(12, 0);
+    RaptorRequest<TripSchedule> request = requestBuilder
+      .profile(STANDARD)
+      .searchParams()
+      .earliestDepartureTime(edt)
+      .latestArrivalTime(lat)
+      .searchOneIterationOnly()
+      .addAccessPaths(TestAccessEgress.free(startingStop))
+      .addEgressPaths(TestAccessEgress.free(endStop))
+      .maxNumberOfTransfers(3)
+      .timetable(true)
+      .build();
 
     if (1 == 1) return; // To make test succeed
-
     // TODO: Fill in missing data in the following code
 
-    RaptorRequest<TripSchedule> request = null; // Create a valid Request
     var raptorDataProvider = createRequestTransitDataProvider(transitLayer);
 
     var result = raptorService.route(request, raptorDataProvider);
