@@ -67,7 +67,7 @@ class DeFernverkehrTest extends GtfsTest {
       if (stopByIndex.getName().toString().contains("Heidelberg Hbf")) {
         allAccessPoints.add(TestAccessEgress.walk(i, 60));
       }
-      if (stopByIndex.getName().toString().contains("Mannheim Hbf")) {
+      if (stopByIndex.getName().toString().contains("Berlin Hbf")) {
         allEgressPoints.add(TestAccessEgress.walk(i, 60));
       }
     }
@@ -76,14 +76,15 @@ class DeFernverkehrTest extends GtfsTest {
     allEgressPoints.forEach(l -> System.out.println("Egress: " + transitLayer.getStopByIndex(l.stop())));
 
     RaptorRequestBuilder<TripSchedule> requestBuilder = new RaptorRequestBuilder<>();
-    int edt = hm2time(10, 0);
-    int lat = hm2time(14, 0);
+    int edt = hm2time(8, 0);
+    int lat = hm2time(16, 0);
     RaptorRequest<TripSchedule> raptorRequest = requestBuilder
       .profile(STANDARD)
       .searchParams()
       .earliestDepartureTime(edt)
       .latestArrivalTime(lat)
-      .searchOneIterationOnly()
+      .searchWindow(Duration.ofHours(2))
+      //.searchOneIterationOnly()
       .addAccessPaths(allAccessPoints)
       .addEgressPaths(allEgressPoints)
       .maxNumberOfTransfers(5)
