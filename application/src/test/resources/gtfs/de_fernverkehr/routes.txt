@@ -1,0 +1,199 @@
+route_long_name,route_short_name,agency_id,route_desc,route_type,route_id
+,EC,1,Fahrradmitnahme begrenzt möglich,2,100
+,EC,2,,2,134
+,EC,4,,2,4
+,EC,4,Fahrradmitnahme begrenzt möglich,2,160
+,EC,5,Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,122
+,EC,8,Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,108
+,EC 12,5,,2,142
+,EC 27,6,,2,84
+,EC 27,6,Fahrradmitnahme begrenzt möglich,2,33
+,EC 62,6,Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,34
+,EC 62,8,Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,14
+,EC 75,2,.,2,18
+,EC 75,6,,2,15
+,EC 85,5,Fahrradmitnahme begrenzt möglich,2,143
+,EC 85,6,Fahrradmitnahme begrenzt möglich,2,70
+,EC 88,5,Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,177
+,EC 88,8,Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,28
+,EC 89,6,Fahrradmitnahme begrenzt möglich,2,109
+,EC 95,12,,2,85
+,EC 95,12,Fahrradmitnahme begrenzt möglich,2,169
+,EC 95,6,,2,40
+,EC 95,6,Fahrradmitnahme begrenzt möglich,2,101
+,EC 95,6,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich,2,46
+,ECE 85,6,Fahrradmitnahme begrenzt möglich,2,170
+,ECE 88,6,Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,135
+,EN,1,,2,102
+,EN,4,Fahrkarte ueber Mobile (Handy),2,136
+,EN,7,,2,137
+,EN,8,,2,10
+,EN 27,1,,2,164
+,EN 27,12,Fahrkarte ueber Mobile (Handy),2,138
+,IC,10,Deutschland-Ticket nicht gültig; Fahrradmitnahme begrenzt möglich,2,19
+,IC,11,,2,165
+,IC,11,Fahrradmitnahme begrenzt möglich,2,171
+,IC,3,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,178
+,IC,3,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,191
+,IC,5,Einstieg mit Rollstuhl stufenfrei; Fahrradmitnahme begrenzt möglich,2,190
+,IC,5,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,62
+,IC,5,Fahrradmitnahme begrenzt möglich,2,103
+,IC,5,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich,2,104
+,IC,8,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,152
+,IC 17,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,96
+,IC 17,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,161
+,IC 17,6,Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,41
+,IC 17,6,Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,5
+,IC 17,6,Nahverkehrsfahrkarten werden anerkannt; Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,114
+,IC 24,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,185
+,IC 24,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich; Fahrradreservierung unter 030 2970 oder in Reisezentren + DB Agenturen,2,63
+,IC 26,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,78
+,IC 26,6,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,153
+,IC 26,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,56
+,IC 27,6,Fahrradmitnahme begrenzt möglich,2,186
+,IC 34,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,154
+,IC 34,6,Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,94
+,IC 34,6,Nahverkehrsfahrkarten werden anerkannt; Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,172
+,IC 35,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,26
+,IC 35,6,Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,29
+,IC 35,6,Nahverkehrsfahrkarten werden anerkannt; Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,147
+,IC 39,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,54
+,IC 39,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,47
+,IC 43,6,Einstieg mit Rollstuhl stufenfrei; Fahrradmitnahme begrenzt möglich,2,123
+,IC 43,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,148
+,IC 48,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,55
+,IC 51,6,Fahrradmitnahme begrenzt möglich,2,95
+,IC 51,6,Nahverkehrsfahrkarten werden anerkannt; Fahrradmitnahme begrenzt möglich,2,79
+,IC 55,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,139
+,IC 56,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,57
+,IC 56,6,Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,179
+,IC 56,6,Nahverkehrsfahrkarten werden anerkannt; Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,97
+,IC 56,6,Nahverkehrsfahrkarten werden anerkannt; Nahverkehrsfahrkarten werden anerkannt; Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,173
+,IC 57,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,130
+,IC 6,5,Fahrradmitnahme begrenzt möglich,2,180
+,IC 61,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,140
+,IC 62,6,Fahrradmitnahme begrenzt möglich,2,27
+,IC 62,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,11
+,IC 76,2,Fahrradmitnahme begrenzt möglich,2,12
+,IC 77,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,30
+,IC 77,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,116
+,IC 87,6,Einstieg mit Rollstuhl stufenfrei; Fahrradmitnahme begrenzt möglich,2,195
+,IC 87,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,58
+,IC 87,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Deutschlandticket gültig (ohne Mitnahmeregelung); Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,42
+,IC 87,6,Einstieg mit Rollstuhl stufenfrei; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,105
+,IC 87,6,Einstieg mit Rollstuhl stufenfrei; Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Deutschlandticket gültig (ohne Mitnahmeregelung); Fahrradmitnahme begrenzt möglich,2,166
+,IC 87,6,Einstieg mit Rollstuhl stufenfrei; Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Fahrradmitnahme begrenzt möglich,2,141
+,IC 87,6,Fahrradmitnahme begrenzt möglich,2,59
+,IC 87,6,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich,2,155
+,IC 87,6,Nahverkehrsfahrkarten werden anerkannt; Deutschlandticket gültig (ohne Mitnahmeregelung); Nahverkehrsfahrkarten werden anerkannt; Deutschlandticket gültig (ohne Mitnahmeregelung); Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Deutschlandticket gültig (ohne Mitnahmeregelung); Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,145
+,IC 87,6,Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Deutschlandticket gültig (ohne Mitnahmeregelung); Fahrradmitnahme begrenzt möglich,2,80
+,IC 87,6,Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Deutschlandticket gültig (ohne Mitnahmeregelung); Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,156
+,IC 87,6,Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Deutschlandticket gültig (ohne Mitnahmeregelung); Komfort Check-in verfügbar - wenn möglich bitte einchecken; Nahverkehrsfahrkarten werden anerkannt; Einstieg mit Rollstuhl stufenfrei; Deutschlandticket gültig (ohne Mitnahmeregelung); Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,117
+,ICE,3,Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,181
+,ICE,5,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,20
+,ICE,5,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,43
+,ICE,8,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,21
+,ICE,8,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,92
+,ICE,8,Fahrradmitnahme begrenzt möglich; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,131
+,ICE,8,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,149
+,ICE,8,Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,115
+,ICE 10,6,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,146
+,ICE 10,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,22
+,ICE 10,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,6
+,ICE 10,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,49
+,ICE 11,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,50
+,ICE 11,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,13
+,ICE 11,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,74
+,ICE 12,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,90
+,ICE 12,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,16
+,ICE 12,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,35
+,ICE 12,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,157
+,ICE 13,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,150
+,ICE 13,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,118
+,ICE 14,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,126
+,ICE 14,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,182
+,ICE 15,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,167
+,ICE 15,6,Nahverkehrsfahrkarten werden anerkannt; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,132
+,ICE 16,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,7
+,ICE 16,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,31
+,ICE 18,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,60
+,ICE 18,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,81
+,ICE 18,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,75
+,ICE 19,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,23
+,ICE 19,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,44
+,ICE 20,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,119
+,ICE 20,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,174
+,ICE 20,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,183
+,ICE 20,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,196
+,ICE 20,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,120
+,ICE 21,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,158
+,ICE 21,6,Nahverkehrsfahrkarten werden anerkannt; Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,51
+,ICE 21,6,Nahverkehrsfahrkarten werden anerkannt; Nahverkehrsfahrkarten werden anerkannt; Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,1
+,ICE 22,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,121
+,ICE 22,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,184
+,ICE 24,6,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,17
+,ICE 24,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,159
+,ICE 24,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,52
+,ICE 24,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,36
+,ICE 24,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,48
+,ICE 25,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,71
+,ICE 25,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,188
+,ICE 25,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,91
+,ICE 26,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,175
+,ICE 26,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,61
+,ICE 28,6,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,8
+,ICE 28,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,187
+,ICE 28,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,124
+,ICE 28,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,82
+,ICE 28,6,Nahverkehrsfahrkarten werden anerkannt; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,53
+,ICE 29,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,111
+,ICE 32,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,133
+,ICE 32,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,66
+,ICE 39,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,176
+,ICE 39,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,24
+,ICE 4,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,93
+,ICE 4,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,192
+,ICE 41,6,Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,112
+,ICE 41,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,37
+,ICE 42,6,Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,9
+,ICE 42,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,162
+,ICE 42,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,2
+,ICE 43,6,Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,72
+,ICE 43,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,83
+,ICE 43,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,125
+,ICE 43,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,113
+,ICE 46,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,127
+,ICE 46,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,73
+,ICE 47,6,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,67
+,ICE 48,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,98
+,ICE 48,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,87
+,ICE 49,6,Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,193
+,ICE 49,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,106
+,ICE 50,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,128
+,ICE 50,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,38
+,ICE 56,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,107
+,ICE 60,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,197
+,ICE 60,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,189
+,ICE 61,5,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,110
+,ICE 62,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,194
+,ICE 77,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,64
+,ICE 78,6,Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,68
+,ICE 78,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,76
+,ICE 78,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,198
+,ICE 79,6,Einstieg mit Rollstuhl mit fahrzeuggebundener Einstiegshilfe; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,25
+,ICE 8,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,144
+,ICE 82,6,,2,88
+,ICE 82,9,,2,99
+,ICE 83,6,,2,3
+,ICE 83,9,,2,129
+,ICE 91,6,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,32
+,ICE 91,6,Fahrradmitnahme begrenzt möglich; Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Nahverkehrsfahrkarten werden anerkannt; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,69
+,ICE 91,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,151
+,ICE 91,6,Fahrradmitnahme begrenzt möglich; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,163
+,ICE 91,6,Fahrradmitnahme begrenzt möglich; Nahverkehrsfahrkarten werden anerkannt; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,86
+,ICE 91,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,168
+,ICE 91,6,Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,89
+,ICE 91,6,Nahverkehrsfahrkarten werden anerkannt; Komfort Check-in verfügbar - wenn möglich bitte einchecken,2,45
+,ICE 91,6,Nahverkehrsfahrkarten werden anerkannt; Komfort Check-in verfügbar - wenn möglich bitte einchecken; Fahrradmitnahme begrenzt möglich,2,65
+,RJ,4,Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,39
+,RJ,8,Rollstuhlstellplatz - Voranmeldung unter +43 5 1717; Fahrradmitnahme begrenzt möglich,2,77

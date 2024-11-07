@@ -1,0 +1,13 @@
+agency_id,agency_name,agency_url,agency_timezone,agency_lang
+1,MAV,https://www.bahn.de,Europe/Berlin,de
+10,800640 SÜWEX,https://www.bahn.de,Europe/Berlin,de
+11,DB Fernverkehr (Codesharing),https://www.bahn.de,Europe/Berlin,de
+12,PKP Intercity,https://www.bahn.de,Europe/Berlin,de
+2,Dänische Staatsbahnen,https://www.bahn.de,Europe/Berlin,de
+3,Nederlandse Spoorwegen,https://www.bahn.de,Europe/Berlin,de
+4,Ceske Drahy,https://www.bahn.de,Europe/Berlin,de
+5,SBB,https://www.bahn.de,Europe/Berlin,de
+6,DB Fernverkehr AG,https://www.bahn.de,Europe/Berlin,de
+7,HZZP,https://www.bahn.de,Europe/Berlin,de
+8,ÖBB,https://www.bahn.de,Europe/Berlin,de
+9,SNCF,https://www.bahn.de,Europe/Berlin,de
