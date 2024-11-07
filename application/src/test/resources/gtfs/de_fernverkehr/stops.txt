@@ -1,4 +1,6 @@
 stop_name,parent_station,stop_id,stop_lat,stop_lon,location_type
+Hallo1,,9999998,51.69054,5.293723,0
+Hallo2,,9999999,51.69054,5.293723,0
 's-Hertogenbosch,,304570,51.69054,5.293723,1
 's-Hertogenbosch,304570,476764,51.69054,5.293723,
 Aachen Hbf,651089,393590,50.76794,6.090865,
