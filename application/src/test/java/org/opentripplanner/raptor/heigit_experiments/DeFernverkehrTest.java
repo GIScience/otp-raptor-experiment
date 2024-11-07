@@ -7,6 +7,7 @@ import static org.opentripplanner.raptor.api.request.RaptorProfile.STANDARD;
 import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
@@ -64,10 +65,10 @@ class DeFernverkehrTest extends GtfsTest {
     for (int i = 0; i < stopCount; i++) {
       StopLocation stopByIndex = transitLayer.getStopByIndex(i);
       if (stopByIndex.getName().toString().contains("Heidelberg Hbf")) {
-        allAccessPoints.add(TestAccessEgress.free(i));
+        allAccessPoints.add(TestAccessEgress.walk(i, 60));
       }
       if (stopByIndex.getName().toString().contains("Mannheim Hbf")) {
-        allEgressPoints.add(TestAccessEgress.free(i));
+        allEgressPoints.add(TestAccessEgress.walk(i, 60));
       }
     }
 
@@ -75,8 +76,8 @@ class DeFernverkehrTest extends GtfsTest {
     allEgressPoints.forEach(l -> System.out.println("Egress: " + transitLayer.getStopByIndex(l.stop())));
 
     RaptorRequestBuilder<TripSchedule> requestBuilder = new RaptorRequestBuilder<>();
-    int edt = hm2time(0, 0);
-    int lat = hm2time(23, 59);
+    int edt = hm2time(10, 0);
+    int lat = hm2time(14, 0);
     RaptorRequest<TripSchedule> raptorRequest = requestBuilder
       .profile(STANDARD)
       .searchParams()
@@ -113,7 +114,8 @@ class DeFernverkehrTest extends GtfsTest {
     return new RaptorRoutingRequestTransitData(
       transitLayer,
       TransitGroupPriorityService.empty(),
-      ZonedDateTime.of(2024, 10, 7, 0, 0, 0, 0, ZoneId.of("UTC")),
+      ZonedDateTime.of(2024, 11, 7, 0, 0, 0, 0, ZoneId.of("UTC")),
+      // ZonedDateTime.now().truncatedTo(ChronoUnit.DAYS),
       0,
       0,
       new TestTransitDataProviderFilter(),
