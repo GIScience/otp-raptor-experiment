@@ -63,10 +63,10 @@ class DeFernverkehrTest extends GtfsTest {
     List<RaptorAccessEgress> allEgressPoints = new ArrayList<>();
     for (int i = 0; i < stopCount; i++) {
       StopLocation stopByIndex = transitLayer.getStopByIndex(i);
-      if (stopByIndex.getName().toString().contains("Hallo1")) {
+      if (stopByIndex.getName().toString().contains("Heidelberg Hbf")) {
         allAccessPoints.add(TestAccessEgress.free(i));
       }
-      if (stopByIndex.getName().toString().contains("Hallo2")) {
+      if (stopByIndex.getName().toString().contains("Mannheim Hbf")) {
         allEgressPoints.add(TestAccessEgress.free(i));
       }
     }

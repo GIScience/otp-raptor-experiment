@@ -1,5 +1,4 @@
 route_long_name,route_short_name,agency_id,route_desc,route_type,route_id
-TESTROUTE,TEST,1,alles möglich,2,9999
 ,EC,1,Fahrradmitnahme begrenzt möglich,2,100
 ,EC,2,,2,134
 ,EC,4,,2,4
