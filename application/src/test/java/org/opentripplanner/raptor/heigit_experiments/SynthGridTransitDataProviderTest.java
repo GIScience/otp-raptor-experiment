@@ -25,10 +25,27 @@ class SynthGridTransitDataProviderTest {
     RaptorTimeTable<TestTripSchedule> timetable = route.timetable();
     RaptorTripPattern pattern = route.pattern();
 
+
     System.out.println("timetable = " + timetable);
     System.out.println("pattern = " + pattern);
 
   }
+
+
+
+  @Test
+  void getStopsForRoute() {
+
+    int[] computedStops = this.dataProvider.getStopsForRoute(3);
+    int[] expectedStops = {3, 13, 23, 33, 43, 53, 63, 73, 83, 93};
+
+    assertArrayEquals(expectedStops, computedStops);
+
+
+
+  }
+
+
 
 
   @Test

@@ -3,7 +3,6 @@ package org.opentripplanner.raptor.heigit_experiments;
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -71,8 +70,21 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   @Override
   public RaptorRoute<TestTripSchedule> getRouteForIndex(int routeIndex) {
 
-    TestTripPattern pattern = TestTripPattern.pattern("TTP_NAME", 1, 5, 99);
+    int[] stops = getStopsForRoute(3);
+
+    TestTripPattern pattern = TestTripPattern.pattern("TTP_NAME", stops);
     return TestRoute.route(pattern);
+  }
+
+
+  int[] getStopsForRoute(int routeIndex) {
+    int[] stops = new int[rows];
+
+    for (int row = 0; row < this.rows; row++) {
+      stops[row] = (10 * row) + routeIndex;
+    }
+
+    return stops;
   }
 
 
