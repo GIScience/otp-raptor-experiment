@@ -2,13 +2,12 @@ package org.opentripplanner.raptor.heigit_experiments;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
+import java.util.Collection;
 import org.junit.jupiter.api.Test;
 import org.onebusaway.csv_entities.EntityHandler;
 import org.onebusaway.csv_entities.FileCsvInputSource;
-import org.onebusaway.gtfs.impl.GtfsDaoImpl;
+import org.onebusaway.gtfs.impl.GenericDaoImpl;
 import org.onebusaway.gtfs.model.AgencyAndId;
-import org.onebusaway.gtfs.model.Route;
 import org.onebusaway.gtfs.model.Stop;
 import org.onebusaway.gtfs.serialization.GtfsReader;
 
@@ -22,19 +21,17 @@ class DeVerkehrAllesTest { //extends GtfsTest {
 
   public String getFeedName() {
     return "gtfs/de_verkehr_alles";
+//    return "gtfs/de_fernverkehr";
   }
 
   /**
    * Currently fails with OutOfMemoryError
-   * @throws IOException
    */
   @Test
   void readGtfsDataWithOneBusAway() throws IOException {
 
     GtfsReader reader = new GtfsReader();
 
-    // I did not find a simple way to hand in a reader, an input stream or a path.
-    // This probably requires a self-made implementation of CsvInputSource
     var gtfsFolder = new File("./src/test/resources/" + getFeedName());
     reader.setInputSource(new FileCsvInputSource(gtfsFolder));
     reader.setInputLocation(gtfsFolder);
@@ -49,17 +46,19 @@ class DeVerkehrAllesTest { //extends GtfsTest {
      * Or you can use the internal entity store, which has references to all the
      * loaded entities
      */
-    GtfsDaoImpl store = new GtfsDaoImpl();
+    //GtfsDaoImpl store = new GtfsDaoImpl();
+
+    SimpleGenericMutableDao store = new SimpleGenericMutableDao();
+
     reader.setEntityStore(store);
 
     reader.run();
 
     // Access entities through the store
-    Map<AgencyAndId, Route> routesById = store.getEntitiesByIdForEntityType(
-      AgencyAndId.class, Route.class);
+    Collection<AgencyAndId> agencyAndIds = store.getAllEntitiesForType(AgencyAndId.class);
 
-    for (Route route : routesById.values()) {
-      System.out.println("route: " + route.getShortName());
+    for (AgencyAndId agency : agencyAndIds) {
+      System.out.println("agency: " + agency.getAgencyId());
     }
   }
 
@@ -73,5 +72,27 @@ class DeVerkehrAllesTest { //extends GtfsTest {
     }
   }
 
+  private static class SimpleGenericMutableDao extends GenericDaoImpl {
+
+    long count = 1;
+
+    @Override
+    public void saveEntity(Object o) {
+      count++;
+      if (count % 100000 == 0)
+        System.out.println(count + ": " + o);
+      super.saveEntity(o);
+    }
+
+//    @Override
+//    public void updateEntity(Object o) {
+//
+//    }
+//
+//    @Override
+//    public void saveOrUpdateEntity(Object o) {
+//
+//    }
+  }
 
 }
