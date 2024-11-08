@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.opentripplanner.raptor._data.transit.TestRoute;
+import org.opentripplanner.raptor._data.transit.TestTripPattern;
 import org.opentripplanner.raptor._data.transit.TestTripSchedule;
 import org.opentripplanner.raptor.api.model.RaptorStopNameResolver;
 import org.opentripplanner.raptor.api.model.RaptorTransfer;
@@ -65,45 +67,56 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
     return new CollectionBasedIntIterator(routesTouchingStops);
   }
 
+
   @Override
   public RaptorRoute<TestTripSchedule> getRouteForIndex(int routeIndex) {
-    return null;
+
+    TestTripPattern pattern = TestTripPattern.pattern("TTP_NAME", 1, 5, 99);
+    return TestRoute.route(pattern);
   }
+
 
   @Override
   public RaptorCostCalculator<TestTripSchedule> multiCriteriaCostCalculator() {
     return null;
   }
 
+
   @Override
   public RaptorSlackProvider slackProvider() {
     return null;
   }
+
 
   @Override
   public RaptorPathConstrainedTransferSearch<TestTripSchedule> transferConstraintsSearch() {
     return null;
   }
 
+
   @Override
   public RaptorStopNameResolver stopNameResolver() {
     return null;
   }
+
 
   @Override
   public int getValidTransitDataStartTime() {
     return 0;
   }
 
+
   @Override
   public int getValidTransitDataEndTime() {
     return 0;
   }
 
+
   @Override
   public RaptorConstrainedBoardingSearch<TestTripSchedule> transferConstraintsForwardSearch(int routeIndex) {
     return null;
   }
+
 
   @Override
   public RaptorConstrainedBoardingSearch<TestTripSchedule> transferConstraintsReverseSearch(int routeIndex) {
