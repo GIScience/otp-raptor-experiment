@@ -14,8 +14,8 @@ import org.onebusaway.gtfs.serialization.GtfsReader;
 
 
 // Requires to
-// 1. download feed from gtfs.de,
-// 2. copy it to /application/test/resources/gtfs/de_verkehr_alles.zip
+// 1. download feed from https://gtfs.de/de/feeds/de_full/
+// 2. move it to /application/test/resources/gtfs/de_verkehr_alles.zip
 // 3. extract zip contents into directory ./de_verkehr_alles/
 class DeVerkehrAllesTest { //extends GtfsTest {
 
