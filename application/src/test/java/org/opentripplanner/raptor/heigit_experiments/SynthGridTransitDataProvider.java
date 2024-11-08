@@ -77,6 +77,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   }
 
 
+  //TODO: ugly - needs cleanup
   int[] getStopsForRoute(int routeIndex) {
     int[] stops = new int[rows];
 
@@ -88,12 +89,14 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
     return stops;
   }
 
+  //TODO: ugly - needs cleanup
   private void fillStopsVertical(int routeIndex, int[] stops) {
     for (int row = 0; row < this.rows; row++) {
       stops[row] = (10 * row) + routeIndex;
     }
   }
 
+  //TODO: ugly - needs cleanup
   private void fillStopsHorizontal(int routeIndex, int[] stops) {
     for (int row = 0; row < this.rows; row++) {
       stops[row] = (10 * (routeIndex-10)) + row;
