@@ -32,20 +32,22 @@ class SynthGridTransitDataProviderTest {
   }
 
 
-
   @Test
-  void getStopsForRoute() {
-
+  void getStopsForVerticalRoute() {
     int[] computedStops = this.dataProvider.getStopsForRoute(3);
     int[] expectedStops = {3, 13, 23, 33, 43, 53, 63, 73, 83, 93};
 
     assertArrayEquals(expectedStops, computedStops);
-
-
-
   }
 
 
+  @Test
+  void getStopsForHorizontalRoute() {
+    int[] computedStops = this.dataProvider.getStopsForRoute(17);
+    int[] expectedStops = {70, 71, 72, 73, 74, 75, 76, 77, 78, 79};
+
+    assertArrayEquals(expectedStops, computedStops);
+  }
 
 
   @Test

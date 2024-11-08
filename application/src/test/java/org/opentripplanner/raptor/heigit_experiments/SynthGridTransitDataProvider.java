@@ -72,6 +72,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
     int[] stops = getStopsForRoute(3);
 
+    //TODO: better name with test - maybe 'Route_<index>'
     TestTripPattern pattern = TestTripPattern.pattern("TTP_NAME", stops);
     return TestRoute.route(pattern);
   }
@@ -80,11 +81,24 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   int[] getStopsForRoute(int routeIndex) {
     int[] stops = new int[rows];
 
+    if (routeIndex < this.columns)
+      fillStopsVertical(routeIndex, stops);
+    else
+      fillStopsHorizontal(routeIndex, stops);
+
+    return stops;
+  }
+
+  private void fillStopsVertical(int routeIndex, int[] stops) {
     for (int row = 0; row < this.rows; row++) {
       stops[row] = (10 * row) + routeIndex;
     }
+  }
 
-    return stops;
+  private void fillStopsHorizontal(int routeIndex, int[] stops) {
+    for (int row = 0; row < this.rows; row++) {
+      stops[row] = (10 * (routeIndex-10)) + row;
+    }
   }
 
 
