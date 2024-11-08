@@ -70,10 +70,9 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   @Override
   public RaptorRoute<TestTripSchedule> getRouteForIndex(int routeIndex) {
 
-    int[] stops = getStopsForRoute(3);
+    int[] stops = getStopsForRoute(routeIndex);
 
-    //TODO: better name with test - maybe 'Route_<index>'
-    TestTripPattern pattern = TestTripPattern.pattern("TTP_NAME", stops);
+    TestTripPattern pattern = TestTripPattern.pattern("Route_" + routeIndex, stops);
     return TestRoute.route(pattern);
   }
 

@@ -20,15 +20,13 @@ class SynthGridTransitDataProviderTest {
   @Test
   void getRouteForIndex() {
 
-    RaptorRoute<TestTripSchedule> route = this.dataProvider.getRouteForIndex(3);
-
-    RaptorTimeTable<TestTripSchedule> timetable = route.timetable();
+    RaptorRoute<TestTripSchedule> route = this.dataProvider.getRouteForIndex(4);
     RaptorTripPattern pattern = route.pattern();
 
+    String expected = "TestTripPattern{name: 'Route_4', stops: [4, 14, 24, 34, 44, 54, 64, 74, 84, 94], " +
+      "restrictions: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}";
 
-    System.out.println("timetable = " + timetable);
-    System.out.println("pattern = " + pattern);
-
+    assertEquals(expected, pattern.toString());
   }
 
 
