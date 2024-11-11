@@ -71,17 +71,19 @@ class QueryRaptorWithTimetable {
       //.searchOneIterationOnly()
       .addAccessPaths(allAccessPoints)
       .addEgressPaths(allEgressPoints)
-      .maxNumberOfTransfers(5)
+      .maxNumberOfTransfers(10)
       .timetable(true)
       .build();
 
     RaptorRoutingRequestTransitData raptorDataProvider = createRequestTransitDataProvider(transitLayer, date);
 
+    long start = System.currentTimeMillis();
     var response = raptorService.route(raptorRequest, raptorDataProvider);
+    long end = System.currentTimeMillis();
 
     System.out.println();
     for (RaptorPath<TripSchedule> path : response.paths()) {
-      System.out.println("Found path = " + path.toString(raptorDataProvider.stopNameResolver()));
+      System.out.printf("Found path (%s ms) = %s%n", end - start, path.toString(raptorDataProvider.stopNameResolver()));
     }
     System.out.println();
 
