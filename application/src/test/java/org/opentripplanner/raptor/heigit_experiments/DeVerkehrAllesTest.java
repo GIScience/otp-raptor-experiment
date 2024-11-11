@@ -82,14 +82,16 @@ class DeVerkehrAllesTest extends GtfsTest {
 
     var searchWindow = Duration.ofHours(2);
 
-    var response = queryRaptor(
-      accessStopsFilter,
-      egressStopsFilter,
-      edt, lat, searchWindow, date,
-      timetableRepository
-    );
+    for (int i = 0; i < 10; i++) {
+      var response = queryRaptor(
+        accessStopsFilter,
+        egressStopsFilter,
+        edt, lat, searchWindow, date,
+        timetableRepository
+      );
+      assertFalse(response.paths().isEmpty());
+    }
 
-    assertFalse(response.paths().isEmpty());
   }
 
   @Test
