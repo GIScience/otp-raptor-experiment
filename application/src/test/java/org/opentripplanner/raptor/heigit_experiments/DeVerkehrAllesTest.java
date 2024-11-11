@@ -1,8 +1,15 @@
 package org.opentripplanner.raptor.heigit_experiments;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.opentripplanner.framework.time.TimeUtils.hm2time;
+import static org.opentripplanner.raptor.heigit_experiments.QueryRaptorWithTimetable.queryRaptor;
+
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.Collection;
+import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 import org.onebusaway.csv_entities.EntityHandler;
 import org.onebusaway.csv_entities.FileCsvInputSource;
@@ -10,13 +17,14 @@ import org.onebusaway.gtfs.impl.GenericDaoImpl;
 import org.onebusaway.gtfs.model.AgencyAndId;
 import org.onebusaway.gtfs.model.Stop;
 import org.onebusaway.gtfs.serialization.GtfsReader;
+import org.opentripplanner.GtfsTest;
 
 
 // Requires to
 // 1. download feed from https://gtfs.de/de/feeds/de_full/
 // 2. move it to /application/test/resources/gtfs/de_verkehr_alles.zip
 // 3. extract zip contents into directory ./de_verkehr_alles/
-class DeVerkehrAllesTest { //extends GtfsTest {
+class DeVerkehrAllesTest extends GtfsTest {
 
 
   public String getFeedName() {
@@ -61,6 +69,65 @@ class DeVerkehrAllesTest { //extends GtfsTest {
       System.out.println("agency: " + agency.getAgencyId());
     }
   }
+
+  @Test
+  void routeFreiburgToHamburgAltona() {
+
+    Predicate<String> accessStopsFilter = stopName -> stopName.contains("Freiburg(Breisgau) Hbf");
+    Predicate<String> egressStopsFilter = stopName -> stopName.contains("Hamburg-Altona");
+
+    LocalDate date = LocalDate.of(2024, 11, 12);
+    int edt = hm2time(8, 0);
+    int lat = hm2time(20, 0);
+
+    var searchWindow = Duration.ofHours(2);
+
+    var response = queryRaptor(
+      accessStopsFilter,
+      egressStopsFilter,
+      edt, lat, searchWindow, date,
+      timetableRepository
+    );
+
+    assertFalse(response.paths().isEmpty());
+  }
+
+  @Test
+  void routeHeidelbergKarlsruhe() {
+
+    Predicate<String> accessStopsFilter = stopName -> {
+      return stopName.contains("Heidelberg, Alois-Link-Platz")
+        || stopName.contains("Heidelberg, Bergfriedhof")
+        || stopName.contains("Heidelberg, Weststadt/Südstadt")
+        || stopName.contains("Heidelberg, Kaiserstraße")
+        ;
+    };
+    Predicate<String> egressStopsFilter = stopName -> {
+      return stopName.contains("Karlsruhe Kronenplatz")
+        || stopName.contains("Karlsruhe Durlacher Tor")
+        || stopName.contains("Karlsruhe Weinweg")
+        || stopName.contains("Karlsruhe Hauptfriedhof")
+        ;
+    };
+
+    LocalDate date = LocalDate.of(2024, 11, 12);
+    int edt = hm2time(9, 0);
+    int lat = hm2time(16, 0);
+
+    var searchWindow = Duration.ofHours(1);
+
+    for (int i = 0; i < 10; i++) {
+      var response = queryRaptor(
+        accessStopsFilter,
+        egressStopsFilter,
+        edt, lat, searchWindow, date,
+        timetableRepository
+      );
+      assertFalse(response.paths().isEmpty());
+    }
+
+  }
+
 
   private static class GtfsEntityHandler implements EntityHandler {
 
