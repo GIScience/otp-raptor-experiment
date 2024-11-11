@@ -50,6 +50,8 @@ class QueryRaptorWithTimetable {
     List<RaptorAccessEgress> allEgressPoints = new ArrayList<>();
     for (int i = 0; i < stopCount; i++) {
       StopLocation stopByIndex = transitLayer.getStopByIndex(i);
+      if (stopByIndex == null) continue;
+
       if (accessStopsFilter.test(stopByIndex.getName().toString())) {
         allAccessPoints.add(TestAccessEgress.walk(i, 60));
       }
