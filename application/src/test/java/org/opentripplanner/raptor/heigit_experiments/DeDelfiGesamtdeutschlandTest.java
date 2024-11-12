@@ -88,25 +88,25 @@ class DeDelfiGesamtdeutschlandTest  extends GtfsTest {
 
     Predicate<String> accessStopsFilter = stopName -> {
       return stopName.contains("Heidelberg, Alois-Link-Platz")
-        || stopName.contains("Heidelberg, Bergfriedhof")
-        || stopName.contains("Heidelberg, Weststadt/Südstadt")
-        || stopName.contains("Heidelberg, Kaiserstraße")
+//        || stopName.contains("Heidelberg, Bergfriedhof")
+//        || stopName.contains("Heidelberg, Weststadt/Südstadt")
+//        || stopName.contains("Heidelberg, Kaiserstraße")
         ;
     };
     Predicate<String> egressStopsFilter = stopName -> {
-      return stopName.contains("Karlsruhe Kronenplatz")
-        || stopName.contains("KA Durlacher Tor")
-        || stopName.contains("Karlsruhe Hauptfriedhof")
+      return stopName.contains("Karlsruhe Hauptfriedhof")
+//        || stopName.contains("KA Durlacher Tor")
+//        || stopName.contains("Karlsruhe Kronenplatz")
         ;
     };
 
     LocalDate date = LocalDate.of(2024, 11, 12);
-    int edt = hm2time(9, 0);
-    int lat = hm2time(16, 0);
+    int edt = hm2time(10, 0);
+    int lat = hm2time(14, 0);
 
     var searchWindow = Duration.ofHours(1);
 
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 5; i++) {
       var response = queryRaptor(
         accessStopsFilter,
         egressStopsFilter,
@@ -116,40 +116,6 @@ class DeDelfiGesamtdeutschlandTest  extends GtfsTest {
       assertFalse(response.paths().isEmpty());
     }
 
-  }
-
-
-  private static class GtfsEntityHandler implements EntityHandler {
-
-    public void handleEntity(Object bean) {
-      if (bean instanceof Stop) {
-        Stop stop = (Stop) bean;
-        System.out.println("stop: " + stop.getName());
-      }
-    }
-  }
-
-  private static class SimpleGenericMutableDao extends GenericDaoImpl {
-
-    long count = 1;
-
-    @Override
-    public void saveEntity(Object o) {
-      count++;
-      if (count % 100000 == 0)
-        System.out.println(count + ": " + o);
-      super.saveEntity(o);
-    }
-
-//    @Override
-//    public void updateEntity(Object o) {
-//
-//    }
-//
-//    @Override
-//    public void saveOrUpdateEntity(Object o) {
-//
-//    }
   }
 
 }
