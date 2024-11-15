@@ -50,8 +50,8 @@ node "Runtime view"  {
     folder "PTS Service" as service <<Spring Boot App>> {
 
     component "PTS Service" as api <<API and orchestration>>
-    component "Raptor copy from OTP" as raptor <<computation>>
     component "ORS Routing Engine" as routing <<computation>>
+    component "Raptor copy from OTP" as raptor <<computation>>
 
     api --> raptor
     api --> routing
