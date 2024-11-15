@@ -49,9 +49,9 @@ node "Runtime view"  {
 
     folder "PTS Service" as service <<Spring Boot App>> {
 
-    component "PTS Service" as api <<module>>
-    component "Raptor copy from OTP" as raptor <<module>>
-    component "ORS Routing Engine" as routing <<module>>
+    component "PTS Service" as api <<API and orchestration>>
+    component "Raptor copy from OTP" as raptor <<computation>>
+    component "ORS Routing Engine" as routing <<computation>>
 
     api --> raptor
     api --> routing
