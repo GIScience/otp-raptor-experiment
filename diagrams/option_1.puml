@@ -23,7 +23,7 @@ skinparam linetype ortho
 node "Repository view"  {
 
 
-    folder "PTS repository" <<Git Repo>>  {
+    folder "PTS repository" <<HeiGIT Git Repo>>  {
         component "PTS Service" as pts <<module>>
         component "Raptor copy from OTP" as raptormodule <<module>>
 
@@ -31,7 +31,7 @@ node "Repository view"  {
 
     }
 
-    folder "ORS repository" <<Git Repo>>  {
+    folder "ORS repository" <<HeiGIT Git Repo>>  {
         component "ORS Routing Engine" as routinglib <<module>>
     }
 
