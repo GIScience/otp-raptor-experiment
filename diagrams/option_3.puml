@@ -1,0 +1,69 @@
+@startuml
+
+title "Option 3: PT as a library"
+
+skinparam linetype ortho
+
+
+<style>
+    node {
+      BackGroundColor #lightblue
+    }
+
+    folder {
+      BackGroundColor #white
+    }
+
+    component {
+      BackGroundColor #beige
+      LineColor black
+    }
+</style>
+
+
+node "Repository view"  {
+
+    folder "PTS repository" <<HeiGIT Git Repo>>  {
+        component "PTS Service" as pts <<module>>
+        component "Raptor copy from OTP" as raptormodule <<module>>
+
+        pts -> raptormodule
+    }
+
+    folder "ORS repository" <<HeiGIT Git Repo>>  {
+        component "ORS API" as ors_api <<module>>
+        component "ORS Routing Engine" as routinglib <<module>>
+    }
+
+    ors_api -> pts
+    pts ---> routinglib
+
+'    pts ----> routinglib : Jar Dependency
+
+
+
+}
+
+
+node "Runtime view"  {
+
+    component "Web Browser" <<External Component>> as browser
+
+
+    folder "PTS Service" as service <<Spring Boot App>> {
+
+    component "PTS Service" as api <<API and orchestration>>
+    component "ORS Routing Engine" as routing <<computation>>
+    component "Raptor copy from OTP" as raptor <<computation>>
+
+    api --> raptor
+    api --> routing
+
+    }
+
+    browser ---> api
+
+}
+
+
+@enduml
