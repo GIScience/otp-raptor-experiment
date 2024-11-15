@@ -6,8 +6,12 @@ skinparam linetype ortho
 
 
 <style>
-    queue {
+    node {
       BackGroundColor #lightblue
+    }
+
+    folder {
+      BackGroundColor #white
     }
 
     component {
@@ -28,10 +32,10 @@ node "Repository view"  {
     }
 
     folder "ORS repository" <<Git Repo>>  {
-        component "ORS Routing Engine" as routinglib <<Jar Dependency>>
+        component "ORS Routing Engine" as routinglib <<module>>
     }
 
-    pts -> routinglib
+    pts ----> routinglib : Jar Dependency
 
 
 
