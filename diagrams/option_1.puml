@@ -42,4 +42,25 @@ node "Repository view"  {
 }
 
 
+node "Runtime view"  {
+
+    component "Web Browser" <<External Component>> as browser
+
+
+    folder "PTS Service" as service <<Spring Boot App>> {
+
+    component "PTS Service" as api <<module>>
+    component "Raptor copy from OTP" as raptor <<module>>
+    component "ORS Routing Engine" as routing <<module>>
+
+    api --> raptor
+    api --> routing
+
+    }
+
+    browser ---> api
+
+}
+
+
 @enduml
