@@ -1,0 +1,64 @@
+@startuml
+
+title "Option 2: Independent PTS with HTTP-based walking routing and Raptor from OTP jar"
+
+skinparam linetype ortho
+
+
+<style>
+    node {
+      BackGroundColor #lightblue
+    }
+
+    folder {
+      BackGroundColor #white
+    }
+
+    component {
+      BackGroundColor #beige
+      LineColor black
+    }
+</style>
+
+node "Repository view"  {
+
+
+
+    folder "PTS repository" <<HeiGIT Git Repo>>  {
+        component "PTS Service" as pts <<module>>
+    }
+
+    folder "OTP repository" <<3rd-Party Git Repo>>  {
+        component "Raptor" as raptormodule <<module>>
+    }
+
+        pts -> raptormodule
+
+
+
+
+}
+
+
+node "Runtime view"  {
+
+    component "Web Browser" <<External Component>> as browser
+
+
+    folder "PTS Service" as service <<Spring Boot App>> {
+
+    component "PTS Service" as api <<API and orchestration>>
+    component "ORS Routing Engine" as routing <<computation>>
+    component "Raptor copy from OTP" as raptor <<computation>>
+
+    api --> raptor
+    api --> routing
+
+    }
+
+    browser ---> api
+
+}
+
+
+@enduml
