@@ -16,14 +16,42 @@ class GtfsReadWithOneBusAwayTest {
 
 
   @Test
-  void readGtfsDataDirectlyWithOneBusAway() throws IOException {
+  void readGtfsBKG() throws IOException {
+    var gtfsFolder = new File("./src/test/resources/gtfs/bkg");
+
+    GtfsDaoImpl store = readGTFSData(gtfsFolder);
+
+    // Access entities through the store
+    Map<AgencyAndId, Route> routesById = store.getEntitiesByIdForEntityType(
+      AgencyAndId.class, Route.class);
+
+    for (Route route : routesById.values()) {
+      System.out.println("route: " + route.getShortName());
+    }
+  }
+
+  @Test
+  void readGtfsSimple() throws IOException {
+    var gtfsFolder = new File("./src/test/resources/gtfs/simple");
+
+    GtfsDaoImpl store = readGTFSData(gtfsFolder);
+
+    // Access entities through the store
+    Map<AgencyAndId, Route> routesById = store.getEntitiesByIdForEntityType(
+      AgencyAndId.class, Route.class);
+
+    for (Route route : routesById.values()) {
+      System.out.println("route: " + route.getShortName());
+    }
+  }
+
+  private static GtfsDaoImpl readGTFSData(File gtfsFolder) throws IOException {
     // Code adapted from https://github.com/OneBusAway/onebusaway-gtfs-modules/blob/master/onebusaway-gtfs/src/test/java/org/onebusaway/gtfs/examples/GtfsReaderExampleMain.java
 
     GtfsReader reader = new GtfsReader();
 
     // I did not find a simple way to hand in a reader, an input stream or a path.
     // This probably requires a self-made implementation of CsvInputSource
-    var gtfsFolder = new File("./src/test/resources/gtfs/simple");
     reader.setInputSource(new FileCsvInputSource(gtfsFolder));
     reader.setInputLocation(gtfsFolder);
 
@@ -31,7 +59,7 @@ class GtfsReadWithOneBusAwayTest {
      * You can register an entity handler that listens for new objects as they
      * are read
      */
-    reader.addEntityHandler(new GtfsEntityHandler());
+    // reader.addEntityHandler(new GtfsEntityHandler());
 
     /**
      * Or you can use the internal entity store, which has references to all the
@@ -41,14 +69,7 @@ class GtfsReadWithOneBusAwayTest {
     reader.setEntityStore(store);
 
     reader.run();
-
-    // Access entities through the store
-    Map<AgencyAndId, Route> routesById = store.getEntitiesByIdForEntityType(
-      AgencyAndId.class, Route.class);
-
-    for (Route route : routesById.values()) {
-      System.out.println("route: " + route.getShortName());
-    }
+    return store;
   }
 
   private static class GtfsEntityHandler implements EntityHandler {
