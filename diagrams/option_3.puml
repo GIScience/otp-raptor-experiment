@@ -35,8 +35,7 @@ node "Repository view"  {
         component "ORS Routing Engine" as routinglib <<module>>
     }
 
-    ors_api -> pts
-    pts ---> routinglib
+    ors_api --> pts
 
 
 
@@ -60,7 +59,7 @@ node "Runtime view"  {
         pts_service --> raptor
     }
 
-    browser ---> api
+    browser --> api
 
 }
 
