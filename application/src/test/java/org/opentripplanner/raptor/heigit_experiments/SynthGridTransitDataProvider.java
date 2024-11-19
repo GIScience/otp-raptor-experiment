@@ -24,8 +24,8 @@ import org.opentripplanner.raptor.spi.RaptorTransitDataProvider;
 
 public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<TestTripSchedule> {
 
-  int rows = 10;
-  int columns = 10;
+  int numberOfRows = 10;
+  int numberOfColumns = 10;
 
   int[] stops;
 
@@ -34,7 +34,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
     this.stops = new int[this.numberOfStops()];
 
-    for (int index = 0; index < rows * columns; index++) {
+    for (int index = 0; index < numberOfRows * numberOfColumns; index++) {
       this.stops[index] = index;
     }
 
@@ -42,7 +42,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public int numberOfStops() {
-    return rows * columns;
+    return numberOfRows * numberOfColumns;
   }
 
   @Override
@@ -64,8 +64,11 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
     return stops.iterator();
   }
 
-  private void addTransferStop(int column1, int row1, List<TestTransfer> stops) {
-    int transferStop = toStopIndex(column1, row1);
+  private void addTransferStop(int stopColumn, int stopRow, List<TestTransfer> stops) {
+    if (stopColumn < 0 || stopRow < 0) return;
+    if (stopColumn >= numberOfColumns || stopRow >= numberOfRows) return;
+
+    int transferStop = toStopIndex(stopColumn, stopRow);
     stops.add(new TestTransfer(transferStop, 60, 6000));
   }
 
@@ -112,9 +115,9 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   //TODO: ugly - needs cleanup
   int[] getStopsForRoute(int routeIndex) {
-    int[] stops = new int[rows];
+    int[] stops = new int[numberOfRows];
 
-    if (routeIndex < this.columns)
+    if (routeIndex < this.numberOfColumns)
       fillStopsVertical(routeIndex, stops);
     else
       fillStopsHorizontal(routeIndex, stops);
@@ -124,14 +127,14 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   //TODO: ugly - needs cleanup
   private void fillStopsVertical(int routeIndex, int[] stops) {
-    for (int row = 0; row < this.rows; row++) {
+    for (int row = 0; row < this.numberOfRows; row++) {
       stops[row] = (10 * row) + routeIndex;
     }
   }
 
   //TODO: ugly - needs cleanup
   private void fillStopsHorizontal(int routeIndex, int[] stops) {
-    for (int row = 0; row < this.rows; row++) {
+    for (int row = 0; row < this.numberOfRows; row++) {
       stops[row] = (10 * (routeIndex - 10)) + row;
     }
   }

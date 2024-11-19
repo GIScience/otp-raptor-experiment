@@ -82,8 +82,6 @@ class SynthGridTransitDataProviderTest {
 
   @Test
   void transfersToStop() {
-    Iterator<TestTransfer> transfers = this.dataProvider.getTransfersFromStop(23);
-    List<TestTransfer> list = toList(transfers);
 
     assertEquals(List.of(
       new TestTransfer(12, 60, 6000),
@@ -94,7 +92,19 @@ class SynthGridTransitDataProviderTest {
       new TestTransfer(32, 60, 6000),
       new TestTransfer(33, 60, 6000),
       new TestTransfer(34, 60, 6000)
-    ), list);
+    ), toList(this.dataProvider.getTransfersFromStop(23)));
+
+    assertEquals(List.of(
+      new TestTransfer(1, 60, 6000),
+      new TestTransfer(10, 60, 6000),
+      new TestTransfer(11, 60, 6000)
+    ), toList(this.dataProvider.getTransfersFromStop(0)));
+
+    assertEquals(List.of(
+      new TestTransfer(88, 60, 6000),
+      new TestTransfer(89, 60, 6000),
+      new TestTransfer(98, 60, 6000)
+    ), toList(this.dataProvider.getTransfersFromStop(99)));
   }
 
   @Test
