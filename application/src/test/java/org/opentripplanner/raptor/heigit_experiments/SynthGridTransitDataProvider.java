@@ -47,6 +47,10 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public Iterator<TestTransfer> getTransfersFromStop(int fromStop) {
+    return calculateTransfersToNeighbouringStops(fromStop);
+  }
+
+  private Iterator<TestTransfer> calculateTransfersToNeighbouringStops(int fromStop) {
     List<TestTransfer> stops = new ArrayList<>();
     int row = row(fromStop);
     int column = column(fromStop);
@@ -78,7 +82,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public Iterator<TestTransfer> getTransfersToStop(int toStop) {
-    return null;
+    return calculateTransfersToNeighbouringStops(toStop);
   }
 
   @Override
