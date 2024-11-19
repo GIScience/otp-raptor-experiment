@@ -85,7 +85,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
     Set<Integer> routesTouchingStops = stopIndices
       .stream()
-      .flatMap(index -> Stream.of(row(index), 10 + column(index)))
+      .flatMap(index -> Stream.of(column(index), 10 + row(index)))
       .collect(Collectors.toSet());
 
     return new CollectionBasedIntIterator(routesTouchingStops);
