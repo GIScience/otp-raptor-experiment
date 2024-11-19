@@ -2,15 +2,17 @@ package org.opentripplanner.raptor.heigit_experiments;
 
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.opentripplanner.raptor._data.transit.TestRoute;
+import org.opentripplanner.raptor._data.transit.TestTransfer;
 import org.opentripplanner.raptor._data.transit.TestTripPattern;
 import org.opentripplanner.raptor._data.transit.TestTripSchedule;
 import org.opentripplanner.raptor.api.model.RaptorStopNameResolver;
-import org.opentripplanner.raptor.api.model.RaptorTransfer;
 import org.opentripplanner.raptor.spi.IntIterator;
 import org.opentripplanner.raptor.spi.RaptorConstrainedBoardingSearch;
 import org.opentripplanner.raptor.spi.RaptorCostCalculator;
@@ -44,12 +46,13 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   }
 
   @Override
-  public Iterator<? extends RaptorTransfer> getTransfersFromStop(int fromStop) {
-    return null;
+  public Iterator<TestTransfer> getTransfersFromStop(int fromStop) {
+    List<TestTransfer> stops = new ArrayList<>();
+    return stops.iterator();
   }
 
   @Override
-  public Iterator<? extends RaptorTransfer> getTransfersToStop(int toStop) {
+  public Iterator<TestTransfer> getTransfersToStop(int toStop) {
     return null;
   }
 
@@ -60,10 +63,18 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
     Set<Integer> routesTouchingStops = stopIndices
       .stream()
-      .flatMap(index -> Stream.of(index % 10, 10 + index / 10))
+      .flatMap(index -> Stream.of(row(index), column(index)))
       .collect(Collectors.toSet());
 
     return new CollectionBasedIntIterator(routesTouchingStops);
+  }
+
+  private static int column(int stopIndex) {
+    return 10 + stopIndex / 10;
+  }
+
+  private static int row(int stopIndex) {
+    return stopIndex % 10;
   }
 
 
