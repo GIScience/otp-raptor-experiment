@@ -2,7 +2,6 @@ package org.opentripplanner.raptor.heigit_experiments;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 
 import java.util.ArrayList;
@@ -13,10 +12,8 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentripplanner.raptor._data.transit.TestTransfer;
 import org.opentripplanner.raptor._data.transit.TestTripSchedule;
-import org.opentripplanner.raptor.api.model.RaptorTransfer;
 import org.opentripplanner.raptor.api.model.RaptorTripPattern;
 import org.opentripplanner.raptor.spi.IntIterator;
-import org.opentripplanner.raptor.spi.RaptorCostCalculator;
 import org.opentripplanner.raptor.spi.RaptorRoute;
 import org.opentripplanner.raptor.spi.RaptorSlackProvider;
 
@@ -135,21 +132,17 @@ class SynthGridTransitDataProviderTest {
   }
 
   @Test
-  void transfers() {
-    Iterator<TestTransfer> transfersFromStop = this.dataProvider.getTransfersFromStop(23);
+  void slackProvider() {
+    RaptorSlackProvider raptorSlackProvider = this.dataProvider.slackProvider();
 
-    //getTransfersToStop(int toStop)
+    assertEquals(30, raptorSlackProvider.alightSlack(42));
+    assertEquals(30, raptorSlackProvider.boardSlack(42));
+    assertEquals(60, raptorSlackProvider.transferSlack());
   }
 
   @Test
   @Disabled("yet to implement")
   void multiCriteriaCostCalculator() {
-
-  }
-
-  @Test
-  @Disabled("yet to implement")
-  void slackProvider() {
 
   }
 

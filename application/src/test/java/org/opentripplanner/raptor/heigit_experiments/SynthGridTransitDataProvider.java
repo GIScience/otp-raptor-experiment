@@ -13,6 +13,7 @@ import org.opentripplanner.raptor._data.transit.TestTransfer;
 import org.opentripplanner.raptor._data.transit.TestTripPattern;
 import org.opentripplanner.raptor._data.transit.TestTripSchedule;
 import org.opentripplanner.raptor.api.model.RaptorStopNameResolver;
+import org.opentripplanner.raptor.spi.DefaultSlackProvider;
 import org.opentripplanner.raptor.spi.IntIterator;
 import org.opentripplanner.raptor.spi.RaptorConstrainedBoardingSearch;
 import org.opentripplanner.raptor.spi.RaptorCostCalculator;
@@ -152,7 +153,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public RaptorSlackProvider slackProvider() {
-    return null;
+    return new DefaultSlackProvider(60, 30, 30);
   }
 
 
