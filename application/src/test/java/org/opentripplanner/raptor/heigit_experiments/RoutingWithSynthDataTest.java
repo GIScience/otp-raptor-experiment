@@ -30,7 +30,7 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
       TestAccessEgress.walk(29, 60)
     );
 
-    var response = findTransitRoutes(access, egress, 3, new SynthGridTransitDataProvider());
+    var response = findTransitRoutes(access, egress, hm2time(0, 50), hm2time(1, 30), 3, new SynthGridTransitDataProvider());
 
     assertFalse(response.noConnectionFound());
     assertEquals(1, response.paths().size());
@@ -49,7 +49,11 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
       TestAccessEgress.free(72)
     );
 
-    var response = findTransitRoutes(access, egress, 3, new SynthGridTransitDataProvider());
+    var response = findTransitRoutes(
+      access, egress,
+      hm2time(10, 20), hm2time(11, 0),
+      3, new SynthGridTransitDataProvider()
+    );
 
     assertFalse(response.noConnectionFound());
     assertEquals(1, response.paths().size());
@@ -57,7 +61,12 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
     System.out.println(PathUtils.pathsToString(response));
   }
 
-  private static RaptorResponse<TestTripSchedule> findTransitRoutes(List<TestAccessEgress> accesses, List<TestAccessEgress> egresses, int maxNumberOfTransfers, SynthGridTransitDataProvider data) {
+  private static RaptorResponse<TestTripSchedule> findTransitRoutes(
+    List<TestAccessEgress> accesses,
+    List<TestAccessEgress> egresses,
+    int edt, int lat, int maxNumberOfTransfers,
+    SynthGridTransitDataProvider data
+  ) {
     RaptorRequestBuilder<TestTripSchedule> requestBuilder = new RaptorRequestBuilder<>();
 
     RaptorService<TestTripSchedule> raptorService = new RaptorService<>(
@@ -74,8 +83,8 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
     requestBuilder.profile(STANDARD);
     requestBuilder
       .searchParams()
-      .earliestDepartureTime(hm2time(0, 50))
-      .latestArrivalTime(hm2time(1, 30))
+      .earliestDepartureTime(edt)
+      .latestArrivalTime(lat)
       .searchOneIterationOnly();
 
     var request = requestBuilder.build();

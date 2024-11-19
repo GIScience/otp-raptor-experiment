@@ -101,16 +101,23 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   public RaptorRoute<TestTripSchedule> getRouteForIndex(int routeIndex) {
 
     int[] stopsForRoute = getStopsForRoute(routeIndex);
+    boolean isVerticalRoute = routeIndex < numberOfColumns;
 
     TestTripPattern pattern = TestTripPattern.pattern("Route_" + routeIndex, stopsForRoute);
 
     List<TestTripSchedule.Builder> timetable = IntStream.rangeClosed(0, 23)
       .mapToObj(this::to2Digits)
-      .map(hourPrefix -> IntStream.range(0, stopsForRoute.length)
-        .mapToObj(stopIndexInRoute -> {
-          return hourPrefix + to2Digits(stopIndexInRoute);
-        })
-        .collect(joining(" ")))
+      .map(hourPrefix -> {
+        return IntStream.range(0, stopsForRoute.length)
+          .mapToObj(stopIndexInRoute -> {
+            if (isVerticalRoute) {
+              // Vertical routes start at 30 minutes past
+              return hourPrefix + to2Digits(stopIndexInRoute + 30);
+            } else
+              return hourPrefix + to2Digits(stopIndexInRoute);
+          })
+          .collect(joining(" "));
+      })
       .map(TestTripSchedule::schedule)
       .toList();
 
