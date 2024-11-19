@@ -20,7 +20,7 @@ import org.opentripplanner.raptor.spi.RaptorSlackProvider;
 import org.opentripplanner.raptor.spi.RaptorTransitDataProvider;
 
 
-public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<TestTripSchedule>{
+public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<TestTripSchedule> {
 
   int rows = 10;
   int columns = 10;
@@ -60,7 +60,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
     Set<Integer> routesTouchingStops = stopIndices
       .stream()
-      .flatMap(index -> Stream.of(10 + index % 10, index / 10))
+      .flatMap(index -> Stream.of(index % 10, 10 + index / 10))
       .collect(Collectors.toSet());
 
     return new CollectionBasedIntIterator(routesTouchingStops);
@@ -99,7 +99,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   //TODO: ugly - needs cleanup
   private void fillStopsHorizontal(int routeIndex, int[] stops) {
     for (int row = 0; row < this.rows; row++) {
-      stops[row] = (10 * (routeIndex-10)) + row;
+      stops[row] = (10 * (routeIndex - 10)) + row;
     }
   }
 
@@ -136,7 +136,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public int getValidTransitDataEndTime() {
-    return 0;
+    return 24 * 60 * 60;
   }
 
 

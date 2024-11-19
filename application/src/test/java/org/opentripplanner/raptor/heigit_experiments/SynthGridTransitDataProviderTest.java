@@ -58,7 +58,7 @@ class SynthGridTransitDataProviderTest {
     CollectionBasedIntIterator stops = new CollectionBasedIntIterator(List.of(0, 10, 46, 77, 95));
     IntIterator iterator = this.dataProvider.routeIndexIterator(stops);
 
-    assertEquals(Set.of(0, 1, 4, 7, 9, 10, 15, 16, 17), toSet(iterator));
+    assertEquals(Set.of(0, 11, 14, 7, 5, 10, 19, 6, 17), toSet(iterator));
 
   }
 
@@ -71,10 +71,9 @@ class SynthGridTransitDataProviderTest {
   }
 
   @Test
-  @Disabled("yet to implement")
   void validTransitStartAndEndTimes() {
-    //getValidTransitDataStartTime()
-    //getValidTransitDataEndTime()
+    assertEquals(0, this.dataProvider.getValidTransitDataStartTime());
+    assertEquals(24 * 60 * 60, this.dataProvider.getValidTransitDataEndTime()); // full day
   }
 
   @Test
