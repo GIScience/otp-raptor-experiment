@@ -2,6 +2,7 @@ package org.opentripplanner.raptor.heigit_experiments;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.opentripplanner.framework.time.TimeUtils.hm2time;
 import static org.opentripplanner.raptor.api.request.RaptorProfile.STANDARD;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
 
     requestBuilder
       .searchParams()
-      .addAccessPaths(TestAccessEgress.free(20))
+      .addAccessPaths(TestAccessEgress.walk(20, 60))
       .addEgressPaths(TestAccessEgress.free(29))
       .maxNumberOfTransfers(3)
       .timetable(true);
@@ -36,8 +37,8 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
     requestBuilder.profile(STANDARD);
     requestBuilder
       .searchParams()
-      .earliestDepartureTime(T00_01)
-      .latestArrivalTime(T00_30)
+      .earliestDepartureTime(hm2time(0, 50))
+      .latestArrivalTime(hm2time(1, 30))
       .searchOneIterationOnly();
 
     var request = requestBuilder.build();

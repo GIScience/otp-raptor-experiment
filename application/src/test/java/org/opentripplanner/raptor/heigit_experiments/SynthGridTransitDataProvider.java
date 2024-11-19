@@ -178,7 +178,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public RaptorPathConstrainedTransferSearch<TestTripSchedule> transferConstraintsSearch() {
-    throw new UnsupportedOperationException("transferConstraintsSearch");
+    return null;
   }
 
 
