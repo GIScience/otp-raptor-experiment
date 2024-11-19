@@ -2,7 +2,6 @@ package org.opentripplanner.raptor.heigit_experiments;
 
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 
-import jakarta.ws.rs.NotSupportedException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -160,7 +159,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public RaptorPathConstrainedTransferSearch<TestTripSchedule> transferConstraintsSearch() {
-    throw new NotSupportedException("transferConstraintsSearch");
+    throw new UnsupportedOperationException("transferConstraintsSearch");
   }
 
 
@@ -183,13 +182,13 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public RaptorConstrainedBoardingSearch<TestTripSchedule> transferConstraintsForwardSearch(int routeIndex) {
-    throw new NotSupportedException("transferConstraintsForwardSearch");
+    throw new UnsupportedOperationException("transferConstraintsForwardSearch");
   }
 
 
   @Override
   public RaptorConstrainedBoardingSearch<TestTripSchedule> transferConstraintsReverseSearch(int routeIndex) {
-    throw new NotSupportedException("transferConstraintsReverseSearch");
+    throw new UnsupportedOperationException("transferConstraintsReverseSearch");
   }
 
 
