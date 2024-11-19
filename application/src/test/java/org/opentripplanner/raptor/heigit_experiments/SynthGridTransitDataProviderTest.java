@@ -1,16 +1,20 @@
 package org.opentripplanner.raptor.heigit_experiments;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 
 import java.util.List;
 import java.util.Set;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentripplanner.raptor._data.transit.TestTripSchedule;
 import org.opentripplanner.raptor.api.model.RaptorTripPattern;
 import org.opentripplanner.raptor.spi.IntIterator;
+import org.opentripplanner.raptor.spi.RaptorCostCalculator;
 import org.opentripplanner.raptor.spi.RaptorRoute;
-import org.opentripplanner.raptor.spi.RaptorTimeTable;
+import org.opentripplanner.raptor.spi.RaptorSlackProvider;
 
 class SynthGridTransitDataProviderTest {
 
@@ -64,6 +68,32 @@ class SynthGridTransitDataProviderTest {
 
     int stops = this.dataProvider.numberOfStops();
     assertEquals(100, stops);
+  }
+
+  @Test
+  @Disabled("yet to implement")
+  void validTransitStartAndEndTimes() {
+    //getValidTransitDataStartTime()
+    //getValidTransitDataEndTime()
+  }
+
+  @Test
+  @Disabled("yet to implement")
+  void transfers() {
+    //getTransfersFromStop(int fromStop)
+    //getTransfersToStop(int toStop)
+  }
+
+  @Test
+  @Disabled("yet to implement")
+  void multiCriteriaCostCalculator() {
+
+  }
+
+  @Test
+  @Disabled("yet to implement")
+  void slackProvider() {
+
   }
 
 
