@@ -165,9 +165,8 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public RaptorStopNameResolver stopNameResolver() {
-    return null;
+    return stopIndex -> "S#" + stopIndex;
   }
-
 
   @Override
   public int getValidTransitDataStartTime() {
