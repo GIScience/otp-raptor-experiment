@@ -48,7 +48,29 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   @Override
   public Iterator<TestTransfer> getTransfersFromStop(int fromStop) {
     List<TestTransfer> stops = new ArrayList<>();
+    int row = row(fromStop);
+    int column = column(fromStop);
+    addTransferStop(column - 1, row - 1, stops);
+    addTransferStop(column, row - 1, stops);
+    addTransferStop(column + 1, row - 1, stops);
+
+    addTransferStop(column - 1, row, stops);
+    addTransferStop(column + 1, row, stops);
+
+    addTransferStop(column - 1, row + 1, stops);
+    addTransferStop(column, row + 1, stops);
+    addTransferStop(column + 1, row + 1, stops);
+
     return stops.iterator();
+  }
+
+  private void addTransferStop(int column1, int row1, List<TestTransfer> stops) {
+    int transferStop = toStopIndex(column1, row1);
+    stops.add(new TestTransfer(transferStop, 60, 6000));
+  }
+
+  private int toStopIndex(int column, int row) {
+    return column + 10 * row;
   }
 
   @Override
@@ -63,17 +85,17 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
     Set<Integer> routesTouchingStops = stopIndices
       .stream()
-      .flatMap(index -> Stream.of(row(index), column(index)))
+      .flatMap(index -> Stream.of(row(index), 10 + column(index)))
       .collect(Collectors.toSet());
 
     return new CollectionBasedIntIterator(routesTouchingStops);
   }
 
-  private static int column(int stopIndex) {
-    return 10 + stopIndex / 10;
+  private static int row(int stopIndex) {
+    return stopIndex / 10;
   }
 
-  private static int row(int stopIndex) {
+  private static int column(int stopIndex) {
     return stopIndex % 10;
   }
 
