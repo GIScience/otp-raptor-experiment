@@ -30,19 +30,6 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   int numberOfRows = 10;
   int numberOfColumns = 10;
 
-  int[] stops;
-
-  @Override
-  public void setup() {
-
-    this.stops = new int[this.numberOfStops()];
-
-    for (int index = 0; index < numberOfRows * numberOfColumns; index++) {
-      this.stops[index] = index;
-    }
-
-  }
-
   @Override
   public int numberOfStops() {
     return numberOfRows * numberOfColumns;
@@ -113,18 +100,16 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   @Override
   public RaptorRoute<TestTripSchedule> getRouteForIndex(int routeIndex) {
 
-    int[] stops = getStopsForRoute(routeIndex);
+    int[] stopsForRoute = getStopsForRoute(routeIndex);
 
-    TestTripPattern pattern = TestTripPattern.pattern("Route_" + routeIndex, stops);
-
-    String schedule = IntStream.range(0, stops.length)
-      .mapToObj(i -> "00:0" + i)
-      .collect(joining(" "));
+    TestTripPattern pattern = TestTripPattern.pattern("Route_" + routeIndex, stopsForRoute);
 
     List<TestTripSchedule.Builder> timetable = IntStream.rangeClosed(0, 23)
       .mapToObj(this::to2Digits)
-      .map(hourPrefix -> IntStream.range(0, stops.length)
-        .mapToObj(i -> hourPrefix + to2Digits(i))
+      .map(hourPrefix -> IntStream.range(0, stopsForRoute.length)
+        .mapToObj(stopIndexInRoute -> {
+          return hourPrefix + to2Digits(stopIndexInRoute);
+        })
         .collect(joining(" ")))
       .map(TestTripSchedule::schedule)
       .toList();

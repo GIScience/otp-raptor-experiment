@@ -20,12 +20,33 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
 
 
   @Test
-  void horizontalRouteWithoutTransfer() {
+  void horizontalRouteWithoutTransferButAccessEgressWalks() {
+
     List<TestAccessEgress> access = List.of(
       TestAccessEgress.walk(20, 60)
     );
+
     List<TestAccessEgress> egress = List.of(
-      TestAccessEgress.free(29)
+      TestAccessEgress.walk(29, 60)
+    );
+
+    var response = findTransitRoutes(access, egress, 3, new SynthGridTransitDataProvider());
+
+    assertFalse(response.noConnectionFound());
+    assertEquals(1, response.paths().size());
+
+    System.out.println(PathUtils.pathsToString(response));
+  }
+
+  @Test
+  void verticalRouteWithoutTransfer() {
+
+    List<TestAccessEgress> access = List.of(
+      TestAccessEgress.free(12)
+    );
+
+    List<TestAccessEgress> egress = List.of(
+      TestAccessEgress.free(72)
     );
 
     var response = findTransitRoutes(access, egress, 3, new SynthGridTransitDataProvider());
