@@ -1,5 +1,6 @@
 package org.opentripplanner.raptor.heigit_experiments;
 
+import static java.util.stream.Collectors.joining;
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import org.opentripplanner.raptor._data.transit.TestRoute;
 import org.opentripplanner.raptor._data.transit.TestTransfer;
@@ -114,7 +116,24 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
     int[] stops = getStopsForRoute(routeIndex);
 
     TestTripPattern pattern = TestTripPattern.pattern("Route_" + routeIndex, stops);
-    return TestRoute.route(pattern);
+
+    String schedule = IntStream.range(0, stops.length)
+      .mapToObj(i -> "00:0" + i)
+      .collect(joining(" "));
+
+    List<TestTripSchedule.Builder> timetable = IntStream.rangeClosed(0, 23)
+      .mapToObj(this::to2Digits)
+      .map(hourPrefix -> IntStream.range(0, stops.length)
+        .mapToObj(i -> hourPrefix + to2Digits(i))
+        .collect(joining(" ")))
+      .map(TestTripSchedule::schedule)
+      .toList();
+
+    return TestRoute.route(pattern).withTimetable(timetable.toArray(new TestTripSchedule.Builder[0]));
+  }
+
+  private String to2Digits(int h) {
+    return String.format("%02d:", h);
   }
 
 
