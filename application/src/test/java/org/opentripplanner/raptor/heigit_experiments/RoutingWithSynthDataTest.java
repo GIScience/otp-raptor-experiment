@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.opentripplanner.framework.time.TimeUtils.hm2time;
 import static org.opentripplanner.raptor.api.request.RaptorProfile.STANDARD;
 
+import java.time.Duration;
 import java.util.List;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.opentripplanner.raptor.RaptorService;
 import org.opentripplanner.raptor._data.RaptorTestConstants;
@@ -173,6 +175,7 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
       .searchParams()
       .earliestDepartureTime(edt)
       .latestArrivalTime(lat)
+//      .searchWindow(Duration.ofMinutes(60));
       .searchOneIterationOnly();
 
     var request = requestBuilder.build();
