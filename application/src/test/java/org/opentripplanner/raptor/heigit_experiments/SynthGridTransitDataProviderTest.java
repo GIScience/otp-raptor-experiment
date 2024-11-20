@@ -23,7 +23,7 @@ class SynthGridTransitDataProviderTest {
 
 
   @Test
-  void getRouteForIndex() {
+  void getRouteForEvenIndex() {
 
     RaptorRoute<TestTripSchedule> route = this.dataProvider.getRouteForIndex(4);
     RaptorTripPattern pattern = route.pattern();
@@ -34,11 +34,23 @@ class SynthGridTransitDataProviderTest {
     assertEquals(expected, pattern.toString());
   }
 
+  @Test
+  void getRouteForOddIndex() {
+
+    RaptorRoute<TestTripSchedule> route = this.dataProvider.getRouteForIndex(3);
+    RaptorTripPattern pattern = route.pattern();
+
+    String expected = "TestTripPattern{name: 'Route_3', stops: [93, 83, 73, 63, 53, 43, 33, 23, 13, 3], " +
+      "restrictions: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]}";
+
+    assertEquals(expected, pattern.toString());
+  }
+
 
   @Test
   void getStopsForVerticalRoute() {
     int[] computedStops = this.dataProvider.getStopsForRoute(3);
-    int[] expectedStops = {3, 13, 23, 33, 43, 53, 63, 73, 83, 93};
+    int[] expectedStops = {93, 83, 73, 63, 53, 43, 33, 23, 13, 3};
 
     assertArrayEquals(expectedStops, computedStops);
   }
@@ -47,7 +59,7 @@ class SynthGridTransitDataProviderTest {
   @Test
   void getStopsForHorizontalRoute() {
     int[] computedStops = this.dataProvider.getStopsForRoute(17);
-    int[] expectedStops = {70, 71, 72, 73, 74, 75, 76, 77, 78, 79};
+    int[] expectedStops = {79, 78, 77, 76, 75, 74, 73, 72, 71, 70};
 
     assertArrayEquals(expectedStops, computedStops);
   }

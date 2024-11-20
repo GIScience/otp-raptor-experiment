@@ -130,27 +130,42 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   //TODO: ugly - needs cleanup
   int[] getStopsForRoute(int routeIndex) {
+    boolean isEven = routeIndex % 2 == 0;
     int[] stops = new int[numberOfRows];
 
     if (routeIndex < this.numberOfColumns)
-      fillStopsVertical(routeIndex, stops);
+      fillStopsVertical(routeIndex, stops, isEven);
     else
-      fillStopsHorizontal(routeIndex, stops);
+      fillStopsHorizontal(routeIndex, stops, isEven);
 
     return stops;
   }
 
   //TODO: ugly - needs cleanup
-  private void fillStopsVertical(int routeIndex, int[] stops) {
-    for (int row = 0; row < this.numberOfRows; row++) {
-      stops[row] = (10 * row) + routeIndex;
+  private void fillStopsVertical(int routeIndex, int[] stops, boolean forwards) {
+    if (forwards) {
+      for (int row = 0; row < this.numberOfRows; row++) {
+        stops[row] = (10 * row) + routeIndex;
+      }
+    } else {
+      for (int row = this.numberOfRows - 1; row >= 0; row--) {
+        int rowIndexOfStop = this.numberOfRows - row - 1;
+        stops[row] = 10 * rowIndexOfStop + routeIndex;
+      }
     }
   }
 
   //TODO: ugly - needs cleanup
-  private void fillStopsHorizontal(int routeIndex, int[] stops) {
-    for (int row = 0; row < this.numberOfRows; row++) {
-      stops[row] = (10 * (routeIndex - 10)) + row;
+  private void fillStopsHorizontal(int routeIndex, int[] stops, boolean forwards) {
+    if (forwards) {
+      for (int column = 0; column < this.numberOfColumns; column++) {
+        stops[column] = (10 * (routeIndex - 10)) + column;
+      }
+    } else {
+      for (int column = this.numberOfColumns - 1; column >= 0; column--) {
+        int columnIndexOfStop = this.numberOfColumns - column - 1;
+        stops[column] = (10 * (routeIndex - 10)) + columnIndexOfStop;
+      }
     }
   }
 
