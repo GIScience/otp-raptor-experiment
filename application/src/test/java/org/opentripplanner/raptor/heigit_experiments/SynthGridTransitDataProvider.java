@@ -1,8 +1,11 @@
 package org.opentripplanner.raptor.heigit_experiments;
 
+import static java.time.temporal.ChronoUnit.MINUTES;
 import static java.util.stream.Collectors.joining;
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -27,8 +30,17 @@ import org.opentripplanner.raptor.spi.RaptorTransitDataProvider;
 
 public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<TestTripSchedule> {
 
-  int numberOfRows = 10;
-  int numberOfColumns = 10;
+  final int numberOfRows;
+  final int numberOfColumns;
+
+  public SynthGridTransitDataProvider() {
+    this(10);
+  }
+
+  public SynthGridTransitDataProvider(int size) {
+    numberOfRows = size;
+    numberOfColumns = size;
+  }
 
   @Override
   public int numberOfStops() {
@@ -106,9 +118,9 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
     TestTripPattern pattern = TestTripPattern.pattern("Route_" + routeIndex, stopsForRoute);
 
     List<TestTripSchedule.Builder> timetable = IntStream.rangeClosed(0, 23)
-      .mapToObj(this::to2Digits)
-      .map(hourPrefix -> IntStream.range(0, stopsForRoute.length)
-        .mapToObj(stopIndexInRoute -> timeForStop(hourPrefix, stopIndexInRoute, isVerticalRoute))
+      .mapToObj(h -> LocalTime.of(h, 0))
+      .map(startTime -> IntStream.range(0, stopsForRoute.length)
+        .mapToObj(stopIndexInRoute -> timeForStop(startTime, stopIndexInRoute, isVerticalRoute))
         .collect(joining(" ")))
       .map(TestTripSchedule::schedule)
       .toList();
@@ -116,17 +128,15 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
     return TestRoute.route(pattern).withTimetable(timetable.toArray(new TestTripSchedule.Builder[0]));
   }
 
-  private String timeForStop(String hourPrefix, int stopIndexInRoute, boolean isVerticalRoute) {
-    // Vertical routes start at 30 minutes past
-    return isVerticalRoute
-      ? hourPrefix + to2Digits(stopIndexInRoute + 30)
-      : hourPrefix + to2Digits(stopIndexInRoute);
-  }
+  private String timeForStop(LocalTime tripStartingTime, int stopIndexInRoute, boolean isVerticalRoute) {
 
-  private String to2Digits(int h) {
-    return String.format("%02d:", h);
-  }
+    if (isVerticalRoute) {
+      tripStartingTime = tripStartingTime.plus(30, MINUTES);
+    }
 
+    LocalTime stopArrivalTime = tripStartingTime.plus(stopIndexInRoute, MINUTES);
+    return stopArrivalTime.toString();
+  }
 
   //TODO: ugly - needs cleanup
   int[] getStopsForRoute(int routeIndex) {
