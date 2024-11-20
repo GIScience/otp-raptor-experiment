@@ -48,14 +48,24 @@ class SynthGridTransitDataProviderTest {
 
 
   @Test
-  void getStopsForVerticalRoute() {
+  void getStopsForVerticalRoute10() {
     int[] computedStops = this.dataProvider.getStopsForRoute(3);
     int[] expectedStops = {93, 83, 73, 63, 53, 43, 33, 23, 13, 3};
 
     assertArrayEquals(expectedStops, computedStops);
   }
 
+  @Test
+  void getStopsForVerticalRoute20() {
+    var dataProvider = new SynthGridTransitDataProvider(20);
+    int[] computedStops = dataProvider.getStopsForRoute(3);
+    int[] expectedStops = {383, 363, 343, 323, 303, 283, 263, 243, 223, 203, 183, 163, 143, 123, 103, 83, 63, 43, 23, 3};
 
+    assertArrayEquals(expectedStops, computedStops);
+  }
+
+
+  // TODO: Duplicate for size 20
   @Test
   void getStopsForHorizontalRoute() {
     int[] computedStops = this.dataProvider.getStopsForRoute(17);

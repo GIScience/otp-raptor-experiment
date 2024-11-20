@@ -155,12 +155,12 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   private void fillStopsVertical(int routeIndex, int[] stops, boolean forwards) {
     if (forwards) {
       for (int row = 0; row < this.numberOfRows; row++) {
-        stops[row] = (10 * row) + routeIndex;
+        stops[row] = (this.numberOfColumns * row) + routeIndex;
       }
     } else {
       for (int row = this.numberOfRows - 1; row >= 0; row--) {
         int rowIndexOfStop = this.numberOfRows - row - 1;
-        stops[row] = 10 * rowIndexOfStop + routeIndex;
+        stops[row] = this.numberOfColumns * rowIndexOfStop + routeIndex;
       }
     }
   }
@@ -169,12 +169,12 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   private void fillStopsHorizontal(int routeIndex, int[] stops, boolean forwards) {
     if (forwards) {
       for (int column = 0; column < this.numberOfColumns; column++) {
-        stops[column] = (10 * (routeIndex - 10)) + column;
+        stops[column] = (this.numberOfRows * (routeIndex - this.numberOfRows)) + column;
       }
     } else {
       for (int column = this.numberOfColumns - 1; column >= 0; column--) {
         int columnIndexOfStop = this.numberOfColumns - column - 1;
-        stops[column] = (10 * (routeIndex - 10)) + columnIndexOfStop;
+        stops[column] = (this.numberOfRows * (routeIndex - this.numberOfRows)) + columnIndexOfStop;
       }
     }
   }

@@ -5,10 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.opentripplanner.framework.time.TimeUtils.hm2time;
 import static org.opentripplanner.raptor.api.request.RaptorProfile.STANDARD;
 
-import java.time.Duration;
 import java.util.List;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestReporter;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.opentripplanner.raptor.RaptorService;
 import org.opentripplanner.raptor._data.RaptorTestConstants;
 import org.opentripplanner.raptor._data.api.PathUtils;
@@ -108,6 +109,46 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
     var response = findTransitRoutes(
       access, egress,
       hm2time(12, 0), hm2time(14, 0),
+      3, data
+    );
+
+    assertFalse(response.noConnectionFound());
+//    assertEquals(1, response.paths().size());
+
+    for (RaptorPath<TestTripSchedule> path : response.paths()) {
+      path.legStream().forEach(System.err::println);
+      System.out.println(path.toString(data.stopNameResolver()));
+    }
+
+//    System.out.println(PathUtils.pathsToString(response));
+  }
+
+  @ParameterizedTest
+  @CsvSource("100")
+  void transferRequiredForwardOnlyScaled(int size, TestReporter reporter) {
+
+    var start = 2 * size + 2;
+    var end = size * (size - 2) + size - 2;
+    int travelTimeMax = size * 2 / 60 + 2;
+
+    reporter.publishEntry("start", start + "");
+    reporter.publishEntry("end", end + "");
+    reporter.publishEntry("travel time max", travelTimeMax + "");
+
+    List<TestAccessEgress> access = List.of(
+      TestAccessEgress.free(start)
+    );
+
+    List<TestAccessEgress> egress = List.of(
+      TestAccessEgress.free(end)
+    );
+
+
+
+    SynthGridTransitDataProvider data = new SynthGridTransitDataProvider(size);
+    var response = findTransitRoutes(
+      access, egress,
+      hm2time(0, 0), hm2time(travelTimeMax, 0),
       3, data
     );
 
