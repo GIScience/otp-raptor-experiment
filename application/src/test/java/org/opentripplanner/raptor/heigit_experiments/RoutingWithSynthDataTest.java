@@ -120,6 +120,35 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
 //    System.out.println(PathUtils.pathsToString(response));
   }
 
+  @Test
+  void transferRequiredBackwardsOnly() {
+
+    List<TestAccessEgress> access = List.of(
+      TestAccessEgress.free(77)
+    );
+
+    List<TestAccessEgress> egress = List.of(
+      TestAccessEgress.free(1)
+    );
+
+    SynthGridTransitDataProvider data = new SynthGridTransitDataProvider();
+    var response = findTransitRoutes(
+      access, egress,
+      hm2time(12, 0), hm2time(14, 0),
+      3, data
+    );
+
+    assertFalse(response.noConnectionFound());
+//    assertEquals(1, response.paths().size());
+
+    for (RaptorPath<TestTripSchedule> path : response.paths()) {
+      path.legStream().forEach(System.err::println);
+      System.out.println(path.toString(data.stopNameResolver()));
+    }
+
+//    System.out.println(PathUtils.pathsToString(response));
+  }
+
   private static RaptorResponse<TestTripSchedule> findTransitRoutes(
     List<TestAccessEgress> accesses,
     List<TestAccessEgress> egresses,
