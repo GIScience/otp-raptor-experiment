@@ -63,7 +63,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
     if (stopColumn >= numberOfColumns || stopRow >= numberOfRows) return;
 
     int transferStop = toStopIndex(stopColumn, stopRow);
-    stops.add(new TestTransfer(transferStop, 60, 6000));
+    stops.add(new TestTransfer(transferStop, 180, 18000)); // Each transfer takes 3 minutes
   }
 
   private int toStopIndex(int column, int row) {
