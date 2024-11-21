@@ -42,7 +42,7 @@ public class PrecomputedGridTransitDataProvider extends SynthGridTransitDataProv
     for (var stopIndex = 0; stopIndex < numberOfStops(); stopIndex++) {
       routesPerStop.put(stopIndex, routesPerStop(stopIndex).toList());
     }
-    System.out.println(routesPerStop);
+//    System.out.println(routesPerStop);
 
   }
 
@@ -69,13 +69,8 @@ public class PrecomputedGridTransitDataProvider extends SynthGridTransitDataProv
   }
 
   @Override
-  public Iterator<TestTransfer> getTransfersFromStop(int fromStop) {
-    return super.getTransfersFromStop(fromStop);
-  }
-
-  @Override
-  public Iterator<TestTransfer> getTransfersToStop(int toStop) {
-    return super.getTransfersToStop(toStop);
+  Iterator<TestTransfer> transfersToNeighbouringStops(int startStop) {
+    return super.transfersToNeighbouringStops(startStop);
   }
 
 }

@@ -48,15 +48,20 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public Iterator<TestTransfer> getTransfersFromStop(int fromStop) {
-    return calculateTransfersToNeighbouringStops(fromStop);
+    return transfersToNeighbouringStops(fromStop);
   }
 
   @Override
   public Iterator<TestTransfer> getTransfersToStop(int toStop) {
-    return calculateTransfersToNeighbouringStops(toStop);
+    return transfersToNeighbouringStops(toStop);
   }
 
-  private Iterator<TestTransfer> calculateTransfersToNeighbouringStops(int startStop) {
+  Iterator<TestTransfer> transfersToNeighbouringStops(int startStop) {
+    var stops = calculateTransfersToNeighbouringStops(startStop);
+    return stops.iterator();
+  }
+
+  List<TestTransfer> calculateTransfersToNeighbouringStops(int startStop) {
     List<TestTransfer> stops = new ArrayList<>();
     int row = row(startStop);
     int column = column(startStop);
@@ -70,8 +75,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
     addTransferStop(column - 1, row + 1, stops);
     addTransferStop(column, row + 1, stops);
     addTransferStop(column + 1, row + 1, stops);
-
-    return stops.iterator();
+    return stops;
   }
 
   private void addTransferStop(int stopColumn, int stopRow, List<TestTransfer> stops) {
@@ -83,7 +87,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   }
 
   private int toStopIndex(int column, int row) {
-    return column + 10 * row;
+    return column + this.numberOfColumns * row;
   }
 
   @Override
