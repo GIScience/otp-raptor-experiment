@@ -22,11 +22,6 @@ class PrecomputedGridTransitDataProviderTest {
 
   PrecomputedGridTransitDataProvider dataProvider = new PrecomputedGridTransitDataProvider();
 
-  @BeforeEach
-  void initDataProvider() {
-    dataProvider.setup();
-  }
-
   @Test
   void getRouteForEvenIndex() {
 
@@ -63,7 +58,6 @@ class PrecomputedGridTransitDataProviderTest {
   @Test
   void getStopsForVerticalRoute20() {
     var dataProvider = new PrecomputedGridTransitDataProvider(20);
-    dataProvider.setup();
 
     int[] computedStops = dataProvider.getStopsForRoute(3);
     int[] expectedStops = {383, 363, 343, 323, 303, 283, 263, 243, 223, 203, 183, 163, 143, 123, 103, 83, 63, 43, 23, 3};
@@ -96,7 +90,6 @@ class PrecomputedGridTransitDataProviderTest {
   void routeIndexIteratorSize20() {
 
     this.dataProvider = new PrecomputedGridTransitDataProvider(20);
-    this.dataProvider.setup();
 
     CollectionBasedIntIterator stops = new CollectionBasedIntIterator(List.of(0, 399));
     IntIterator iterator = this.dataProvider.routeIndexIterator(stops);

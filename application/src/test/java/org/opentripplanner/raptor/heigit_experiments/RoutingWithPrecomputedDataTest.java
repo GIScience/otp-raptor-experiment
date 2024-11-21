@@ -148,7 +148,7 @@ public class RoutingWithPrecomputedDataTest implements RaptorTestConstants {
       TestAccessEgress.free(end)
     );
 
-    var data = createDataProvider(size);
+    var data = new PrecomputedGridTransitDataProvider(size);
     var response = findTransitRoutes(
       access, egress,
       hm2time(0, 0), hm2time(travelTimeMax, 0),
@@ -164,12 +164,6 @@ public class RoutingWithPrecomputedDataTest implements RaptorTestConstants {
     }
 
 //    System.out.println(PathUtils.pathsToString(response));
-  }
-
-  private static PrecomputedGridTransitDataProvider createDataProvider(int size) {
-    PrecomputedGridTransitDataProvider data = new PrecomputedGridTransitDataProvider(size);
-    data.setup();
-    return data;
   }
 
   @Test

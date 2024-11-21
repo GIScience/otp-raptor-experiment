@@ -13,10 +13,11 @@ public class PrecomputedGridTransitDataProvider extends SynthGridTransitDataProv
 
   public PrecomputedGridTransitDataProvider(int size) {
     super(size);
+    precompute();
   }
 
   public PrecomputedGridTransitDataProvider() {
-    super(10);
+    this(10);
   }
 
   private final int numberOfStops = numberOfColumns * numberOfRows;
@@ -30,8 +31,8 @@ public class PrecomputedGridTransitDataProvider extends SynthGridTransitDataProv
   // map stopIndex to transfers
   private final Map<Integer, List<TestTransfer>> transfersPerStop = new HashMap<>();
 
-  @Override
-  public void setup() {
+  // Do not use setUp() since set up is called for each query!
+  private void precompute() {
     int numberOfRoutes = numberOfRows + numberOfColumns;
     for (var routeIndex = 0; routeIndex < numberOfRoutes; routeIndex++) {
       stopsPerRoute.put(routeIndex, super.getStopsForRoute(routeIndex));
