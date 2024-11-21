@@ -129,7 +129,7 @@ public class RoutingWithPrecomputedDataTest implements RaptorTestConstants {
   }
 
   @ParameterizedTest
-  @CsvSource({"10", "20", "100", "200", "500"})
+  @CsvSource({"10", "20", "100", "200", "500", "650"})
   void transferRequiredForwardOnlyScaled(int size, TestReporter reporter) {
 
     var start = 2 * size + 2;
