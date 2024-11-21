@@ -1,15 +1,11 @@
 package org.opentripplanner.raptor.heigit_experiments;
 
-import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 import org.opentripplanner.raptor._data.transit.TestTransfer;
 import org.opentripplanner.raptor.spi.IntIterator;
 
@@ -31,6 +27,9 @@ public class PrecomputedGridTransitDataProvider extends SynthGridTransitDataProv
   // map stopIndex to set of route indexes
   private final Map<Integer, List<Integer>> routesPerStop = new HashMap<>();
 
+  // map stopIndex to transfers
+  private final Map<Integer, List<TestTransfer>> transfersPerStop = new HashMap<>();
+
   @Override
   public void setup() {
     int numberOfRoutes = numberOfRows + numberOfColumns;
@@ -41,8 +40,10 @@ public class PrecomputedGridTransitDataProvider extends SynthGridTransitDataProv
 
     for (var stopIndex = 0; stopIndex < numberOfStops(); stopIndex++) {
       routesPerStop.put(stopIndex, routesPerStop(stopIndex).toList());
+      transfersPerStop.put(stopIndex, calculateTransfersToNeighbouringStops(stopIndex));
     }
 //    System.out.println(routesPerStop);
+//    System.out.println(transfersPerStop);
 
   }
 
@@ -70,7 +71,8 @@ public class PrecomputedGridTransitDataProvider extends SynthGridTransitDataProv
 
   @Override
   Iterator<TestTransfer> transfersToNeighbouringStops(int startStop) {
-    return super.transfersToNeighbouringStops(startStop);
+    var stops = transfersPerStop.get(startStop);
+    return stops.iterator();
   }
 
 }

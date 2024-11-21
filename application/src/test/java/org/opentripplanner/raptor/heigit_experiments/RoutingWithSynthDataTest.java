@@ -124,7 +124,7 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
   }
 
   @ParameterizedTest
-  @CsvSource({"100", "200", "500", "700", "800"})
+  @CsvSource({"10", "20", "100", "200", "500"})
   void transferRequiredForwardOnlyScaled(int size, TestReporter reporter) {
 
     var start = 2 * size + 2;
@@ -206,6 +206,8 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
       RaptorConfig.defaultConfigForTest()
     );
 
+    long before = System.currentTimeMillis();
+
     requestBuilder
       .searchParams()
       .addAccessPaths(accesses.toArray(new TestAccessEgress[0]))
@@ -223,6 +225,10 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
 
     var request = requestBuilder.build();
     var response = raptorService.route(request, data);
+
+    long after = System.currentTimeMillis();
+    System.out.println("Query time: " + (after - before) + " msecs");
+
     return response;
   }
 }
