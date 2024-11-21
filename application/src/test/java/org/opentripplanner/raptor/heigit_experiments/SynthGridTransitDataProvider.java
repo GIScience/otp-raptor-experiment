@@ -5,7 +5,6 @@ import static java.util.stream.Collectors.joining;
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -94,18 +93,22 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
     Set<Integer> routesTouchingStops = stopIndices
       .stream()
-      .flatMap(index -> Stream.of(column(index), 10 + row(index)))
+      .flatMap(stopIndex -> routesPerStop(stopIndex))
       .collect(Collectors.toSet());
 
     return new CollectionBasedIntIterator(routesTouchingStops);
   }
 
-  private static int row(int stopIndex) {
-    return stopIndex / 10;
+  Stream<Integer> routesPerStop(int stopIndex) {
+    return Stream.of(column(stopIndex), this.numberOfColumns + row(stopIndex));
   }
 
-  private static int column(int stopIndex) {
-    return stopIndex % 10;
+  int row(int stopIndex) {
+    return stopIndex / this.numberOfColumns;
+  }
+
+  int column(int stopIndex) {
+    return stopIndex % this.numberOfColumns;
   }
 
 

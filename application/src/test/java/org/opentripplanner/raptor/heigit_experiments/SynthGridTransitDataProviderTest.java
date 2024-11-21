@@ -85,6 +85,19 @@ class SynthGridTransitDataProviderTest {
 
   }
 
+  @Test
+  void routeIndexIteratorSize20() {
+
+    this.dataProvider = new SynthGridTransitDataProvider(20);
+    this.dataProvider.setup();
+
+    CollectionBasedIntIterator stops = new CollectionBasedIntIterator(List.of(0, 399));
+    IntIterator iterator = this.dataProvider.routeIndexIterator(stops);
+
+    assertEquals(Set.of(0, 20, 19, 39), toSet(iterator));
+
+  }
+
 
   @Test
   void numberOfStops() {

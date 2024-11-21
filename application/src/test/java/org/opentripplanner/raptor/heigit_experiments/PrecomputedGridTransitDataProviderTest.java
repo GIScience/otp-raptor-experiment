@@ -92,10 +92,22 @@ class PrecomputedGridTransitDataProviderTest {
 
   }
 
+  @Test
+  void routeIndexIteratorSize20() {
+
+    this.dataProvider = new PrecomputedGridTransitDataProvider(20);
+    this.dataProvider.setup();
+
+    CollectionBasedIntIterator stops = new CollectionBasedIntIterator(List.of(0, 399));
+    IntIterator iterator = this.dataProvider.routeIndexIterator(stops);
+
+    assertEquals(Set.of(0, 20, 19, 39), toSet(iterator));
+
+  }
+
 
   @Test
   void numberOfStops() {
-
     int stops = this.dataProvider.numberOfStops();
     assertEquals(100, stops);
   }
