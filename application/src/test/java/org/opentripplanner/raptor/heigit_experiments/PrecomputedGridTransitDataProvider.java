@@ -7,7 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.opentripplanner.raptor._data.transit.TestTransfer;
+import org.opentripplanner.raptor._data.transit.TestTripSchedule;
 import org.opentripplanner.raptor.spi.IntIterator;
+import org.opentripplanner.raptor.spi.RaptorRoute;
 
 public class PrecomputedGridTransitDataProvider extends SynthGridTransitDataProvider {
 
@@ -31,13 +33,18 @@ public class PrecomputedGridTransitDataProvider extends SynthGridTransitDataProv
   // map stopIndex to transfers
   private final Map<Integer, List<TestTransfer>> transfersPerStop = new HashMap<>();
 
+  // map routeIndexToRouteSchedule
+  private final Map<Integer, RaptorRoute<TestTripSchedule>> schedulePerRoute = new HashMap<>();
+
   // Do not use setUp() since set up is called for each query!
   private void precompute() {
     int numberOfRoutes = numberOfRows + numberOfColumns;
     for (var routeIndex = 0; routeIndex < numberOfRoutes; routeIndex++) {
       stopsPerRoute.put(routeIndex, super.getStopsForRoute(routeIndex));
+      schedulePerRoute.put(routeIndex, super.getRouteForIndex(routeIndex));
     }
 //    System.out.println(stopsPerRoute);
+//    System.out.println(schedulePerRoute);
 
     for (var stopIndex = 0; stopIndex < numberOfStops(); stopIndex++) {
       routesPerStop.put(stopIndex, routesPerStop(stopIndex).toList());
@@ -76,4 +83,8 @@ public class PrecomputedGridTransitDataProvider extends SynthGridTransitDataProv
     return stops.iterator();
   }
 
+  @Override
+  public RaptorRoute<TestTripSchedule> getRouteForIndex(int routeIndex) {
+    return schedulePerRoute.get(routeIndex);
+  }
 }

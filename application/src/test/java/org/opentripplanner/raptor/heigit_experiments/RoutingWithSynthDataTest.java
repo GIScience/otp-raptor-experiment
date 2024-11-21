@@ -146,13 +146,11 @@ public class RoutingWithSynthDataTest implements RaptorTestConstants {
 
 
     SynthGridTransitDataProvider data = new SynthGridTransitDataProvider(size);
-    reporter.publishEntry("before query");
     var response = findTransitRoutes(
       access, egress,
       hm2time(0, 0), hm2time(travelTimeMax, 0),
       3, data
     );
-    reporter.publishEntry("after query");
 
     assertFalse(response.noConnectionFound());
 //    assertEquals(1, response.paths().size());
