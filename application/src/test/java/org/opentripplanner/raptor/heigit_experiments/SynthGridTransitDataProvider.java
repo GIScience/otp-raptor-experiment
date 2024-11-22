@@ -1,9 +1,9 @@
 package org.opentripplanner.raptor.heigit_experiments;
 
-import static java.time.temporal.ChronoUnit.MINUTES;
 import static java.util.stream.Collectors.joining;
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -34,13 +34,20 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   final int numberOfRows;
   final int numberOfColumns;
 
+  final Duration travelTimePerStop;
+
   public SynthGridTransitDataProvider() {
     this(10);
   }
 
-  public SynthGridTransitDataProvider(int size) {
+  public SynthGridTransitDataProvider(int size, Duration travelTimePerStop) {
     numberOfRows = size;
     numberOfColumns = size;
+    this.travelTimePerStop = travelTimePerStop;
+  }
+
+  public SynthGridTransitDataProvider(int size) {
+    this(size, Duration.ofMinutes(1));
   }
 
   @Override
@@ -126,10 +133,13 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
     TestTripPattern pattern = TestTripPattern.pattern("Route_" + routeIndex, stopsForRoute);
 
+    LocalDate referenceDay = LocalDate.now();
+
     List<TestTripSchedule.Builder> timetable = IntStream.rangeClosed(0, 23)
       .mapToObj(h -> LocalTime.of(h, 0))
+      .map(localTime -> LocalDateTime.of(referenceDay, localTime))
       .map(startTime -> IntStream.range(0, stopsForRoute.length)
-        .mapToObj(stopIndexInRoute -> timeForStop(startTime, stopIndexInRoute, isVerticalRoute))
+        .mapToObj(stopIndexInRoute -> timeForStop(referenceDay, startTime, stopIndexInRoute, isVerticalRoute))
         .collect(joining(" ")))
       .map(TestTripSchedule::schedule)
       .toList();
@@ -137,14 +147,15 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
     return TestRoute.route(pattern).withTimetable(timetable.toArray(new TestTripSchedule.Builder[0]));
   }
 
-  private String timeForStop(LocalTime tripStartingTime, int stopIndexInRoute, boolean isVerticalRoute) {
+  private String timeForStop(LocalDate referenceDay, LocalDateTime tripStartingTime, int stopIndexInRoute, boolean isVerticalRoute) {
 
     if (isVerticalRoute) {
-      tripStartingTime = tripStartingTime.plus(30, MINUTES);
+      tripStartingTime = tripStartingTime.plusMinutes(30);
     }
 
-    LocalTime stopArrivalTime = tripStartingTime.plus(stopIndexInRoute, MINUTES);
-    return stopArrivalTime.toString();
+    var arrivalOffset = travelTimePerStop.multipliedBy(stopIndexInRoute);
+    LocalDateTime stopArrivalTime = tripStartingTime.plus(arrivalOffset);
+    return toTimeStringWithDayOffset(referenceDay, stopArrivalTime);
   }
 
   //TODO: ugly - needs cleanup
@@ -230,7 +241,7 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
 
   @Override
   public int getValidTransitDataEndTime() {
-    return 24 * 60 * 60;
+    return 2 * 24 * 60 * 60; // two days in seconds
   }
 
 

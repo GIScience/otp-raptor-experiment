@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 import static org.opentripplanner.raptor.heigit_experiments.SynthGridTransitDataProvider.toTimeStringWithDayOffset;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -31,8 +32,10 @@ class SynthGridTransitDataProviderTest {
   @Disabled
   @CsvSource({"0", "1", "2", "3", "4", "10", "11", "12", "13"})
   void printAllRoutes(int routeIndex) {
+    this.dataProvider = new SynthGridTransitDataProvider(10, Duration.ofMinutes(5));
 
     RaptorRoute<TestTripSchedule> route = this.dataProvider.getRouteForIndex(routeIndex);
+
     RaptorTripPattern pattern = route.pattern();
     System.out.println(pattern.toString());
 
@@ -145,7 +148,7 @@ class SynthGridTransitDataProviderTest {
   @Test
   void validTransitStartAndEndTimes() {
     assertEquals(0, this.dataProvider.getValidTransitDataStartTime());
-    assertEquals(24 * 60 * 60, this.dataProvider.getValidTransitDataEndTime()); // full day
+    assertEquals(2 * 24 * 60 * 60, this.dataProvider.getValidTransitDataEndTime()); // two days
   }
 
   @Test

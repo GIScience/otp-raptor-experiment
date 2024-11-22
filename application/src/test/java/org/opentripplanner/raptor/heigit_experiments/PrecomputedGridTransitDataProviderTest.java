@@ -107,7 +107,7 @@ class PrecomputedGridTransitDataProviderTest {
   @Test
   void validTransitStartAndEndTimes() {
     assertEquals(0, this.dataProvider.getValidTransitDataStartTime());
-    assertEquals(24 * 60 * 60, this.dataProvider.getValidTransitDataEndTime()); // full day
+    assertEquals(2 * 24 * 60 * 60, this.dataProvider.getValidTransitDataEndTime()); // two days
   }
 
   @Test
