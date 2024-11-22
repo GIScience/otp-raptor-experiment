@@ -129,7 +129,7 @@ public class RoutingWithPrecomputedDataTest implements RaptorTestConstants {
   }
 
   @ParameterizedTest
-  @CsvSource({"10", "20", "100", "200", "500", "650"})
+  @CsvSource({"10", "20", "100", "200", "500", "650", "800", "1000"})
   void transferRequiredForwardOnlyScaled(int size, TestReporter reporter) {
 
     var start = 2 * size + 2;
@@ -159,6 +159,7 @@ public class RoutingWithPrecomputedDataTest implements RaptorTestConstants {
 //    assertEquals(1, response.paths().size());
 
     for (RaptorPath<TestTripSchedule> path : response.paths()) {
+      System.out.println("#####");
       path.legStream().forEach(System.err::println);
       System.out.println(path.toString(data.stopNameResolver()));
     }
