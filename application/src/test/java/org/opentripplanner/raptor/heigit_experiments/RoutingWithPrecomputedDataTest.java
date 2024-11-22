@@ -238,7 +238,7 @@ public class RoutingWithPrecomputedDataTest implements RaptorTestConstants {
   }
 
   @ParameterizedTest
-  @CsvSource({"10", "20", "100", "200", "500", "650", "800", "1000"})
+  @CsvSource({"10", "10", "20", "50", "100", "200", "500", "700", "1000"})
   void transferRequiredForwardOnlyScaled(int size, TestReporter reporter) {
 
     var start = 2 * size + 2;
@@ -250,11 +250,15 @@ public class RoutingWithPrecomputedDataTest implements RaptorTestConstants {
     reporter.publishEntry("travel time max", travelTimeMax + "");
 
     List<TestAccessEgress> access = List.of(
-      TestAccessEgress.free(start)
+      TestAccessEgress.free(start - 1),
+      TestAccessEgress.free(start),
+      TestAccessEgress.free(start + 1)
     );
 
     List<TestAccessEgress> egress = List.of(
-      TestAccessEgress.free(end)
+      TestAccessEgress.free(end - 1),
+      TestAccessEgress.free(end),
+      TestAccessEgress.free(end + 1)
     );
 
     var data = new PrecomputedGridTransitDataProvider(size);
