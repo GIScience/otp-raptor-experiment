@@ -162,6 +162,53 @@ public class RoutingWithPrecomputedDataTest implements RaptorTestConstants {
   }
 
   @Test
+  @Disabled
+  void manyAccessAndEgressStops() {
+
+    List<TestAccessEgress> access = List.of(
+      TestAccessEgress.free(500),
+      TestAccessEgress.free(501),
+      TestAccessEgress.free(502),
+      TestAccessEgress.free(503),
+      TestAccessEgress.free(504),
+      TestAccessEgress.free(505),
+      TestAccessEgress.free(506),
+      TestAccessEgress.free(507),
+      TestAccessEgress.free(508),
+      TestAccessEgress.free(509),
+      TestAccessEgress.free(510)
+    );
+
+    List<TestAccessEgress> egress = List.of(
+      TestAccessEgress.free(155750),
+      TestAccessEgress.free(155751),
+      TestAccessEgress.free(155752),
+      TestAccessEgress.free(155753),
+      TestAccessEgress.free(155754),
+      TestAccessEgress.free(155755),
+      TestAccessEgress.free(155756),
+      TestAccessEgress.free(155757),
+      TestAccessEgress.free(155758),
+      TestAccessEgress.free(155759)
+    );
+
+    PrecomputedGridTransitDataProvider data = new PrecomputedGridTransitDataProvider(500);
+    var response = findTransitRoutes(
+      access, egress,
+      hm2time(0, 0), hm2time(24, 0),
+      5, data
+    );
+
+    assertFalse(response.noConnectionFound());
+
+    for (RaptorPath<TestTripSchedule> path : response.paths()) {
+      path.legStream().forEach(System.err::println);
+      System.out.println(path.toString(data.stopNameResolver()));
+    }
+
+  }
+
+  @Test
   void transferRequiredForwardOnly() {
 
     List<TestAccessEgress> access = List.of(
