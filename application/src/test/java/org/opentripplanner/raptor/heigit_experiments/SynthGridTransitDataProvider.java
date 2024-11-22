@@ -4,6 +4,8 @@ import static java.time.temporal.ChronoUnit.MINUTES;
 import static java.util.stream.Collectors.joining;
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -184,6 +186,16 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
         stops[column] = (this.numberOfRows * (routeIndex - this.numberOfRows)) + columnIndexOfStop;
       }
     }
+  }
+
+  static String toTimeStringWithDayOffset(LocalDate referenceDay, LocalDateTime time) {
+    var todayAt0 = LocalDateTime.of(referenceDay, LocalTime.of(0, 0));
+    var theTimeOnly = time.toLocalTime().toString();
+    var isOnReferenceDay = time.isBefore(todayAt0.plusDays(1));
+
+    return isOnReferenceDay
+      ? theTimeOnly
+      : theTimeOnly + "+1d";
   }
 
 

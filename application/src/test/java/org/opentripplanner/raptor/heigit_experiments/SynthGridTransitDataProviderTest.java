@@ -3,7 +3,11 @@ package org.opentripplanner.raptor.heigit_experiments;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.opentripplanner.raptor.heigit_experiments.CollectionBasedIntIterator.toSet;
+import static org.opentripplanner.raptor.heigit_experiments.SynthGridTransitDataProvider.toTimeStringWithDayOffset;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -36,6 +40,23 @@ class SynthGridTransitDataProviderTest {
     System.out.println(timetable);
   }
 
+  @Test
+  void testTimeStringWithDayOffset() {
+    LocalTime startTime = LocalTime.of(23, 55);
+    var referenceDay = LocalDate.now();
+    LocalDateTime startDateTime = LocalDateTime.of(referenceDay, startTime);
+    var stillAtReferenceDay = startDateTime.plusMinutes(3);
+    var atNextDay = startDateTime.plusMinutes(13);
+
+    assertEquals("23:58", toTimeStringWithDayOffset(referenceDay, stillAtReferenceDay));
+    assertEquals("00:08+1d", toTimeStringWithDayOffset(referenceDay, atNextDay));
+  }
+
+  @Test
+  void scheduleAcceptsTimeWithDayOffset() {
+    var schedule = TestTripSchedule.schedule("23:00 23:30 00:00+1d 00:30+1d").build();
+    assertEquals("TestTripSchedule{times: [23:00 23:30 0:00+1d 0:30+1d]}", schedule.toString());
+  }
 
   @Test
   void getRouteForEvenIndex() {
