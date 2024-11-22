@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.opentripplanner.raptor._data.transit.TestTransfer;
 import org.opentripplanner.raptor._data.transit.TestTripSchedule;
 import org.opentripplanner.raptor.api.model.RaptorTripPattern;
@@ -20,6 +22,19 @@ import org.opentripplanner.raptor.spi.RaptorSlackProvider;
 class SynthGridTransitDataProviderTest {
 
   SynthGridTransitDataProvider dataProvider = new SynthGridTransitDataProvider();
+
+  @ParameterizedTest
+  @Disabled
+  @CsvSource({"0", "1", "2", "3", "4", "10", "11", "12", "13"})
+  void printAllRoutes(int routeIndex) {
+
+    RaptorRoute<TestTripSchedule> route = this.dataProvider.getRouteForIndex(routeIndex);
+    RaptorTripPattern pattern = route.pattern();
+    System.out.println(pattern.toString());
+
+    var timetable = route.timetable();
+    System.out.println(timetable);
+  }
 
 
   @Test
