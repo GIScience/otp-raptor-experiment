@@ -200,13 +200,12 @@ public class SynthGridTransitDataProvider implements RaptorTransitDataProvider<T
   }
 
   static String toTimeStringWithDayOffset(LocalDate referenceDay, LocalDateTime time) {
-    var todayAt0 = LocalDateTime.of(referenceDay, LocalTime.of(0, 0));
     var theTimeOnly = time.toLocalTime().toString();
-    var isOnReferenceDay = time.isBefore(todayAt0.plusDays(1));
+    var daysOffset = time.toLocalDate().toEpochDay() - referenceDay.toEpochDay();
 
-    return isOnReferenceDay
+    return daysOffset == 0
       ? theTimeOnly
-      : theTimeOnly + "+1d";
+      : theTimeOnly + "+" + daysOffset + "d";
   }
 
 

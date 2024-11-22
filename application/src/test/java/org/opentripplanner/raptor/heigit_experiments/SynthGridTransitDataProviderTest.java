@@ -50,9 +50,11 @@ class SynthGridTransitDataProviderTest {
     LocalDateTime startDateTime = LocalDateTime.of(referenceDay, startTime);
     var stillAtReferenceDay = startDateTime.plusMinutes(3);
     var atNextDay = startDateTime.plusMinutes(13);
+    var threeDaysLater = startDateTime.plusDays(3);
 
     assertEquals("23:58", toTimeStringWithDayOffset(referenceDay, stillAtReferenceDay));
     assertEquals("00:08+1d", toTimeStringWithDayOffset(referenceDay, atNextDay));
+    assertEquals("23:55+3d", toTimeStringWithDayOffset(referenceDay, threeDaysLater));
   }
 
   @Test
