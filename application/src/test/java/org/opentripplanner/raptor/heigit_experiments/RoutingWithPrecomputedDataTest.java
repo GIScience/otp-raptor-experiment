@@ -6,6 +6,7 @@ import static org.opentripplanner.framework.time.TimeUtils.hm2time;
 import static org.opentripplanner.raptor.api.request.RaptorProfile.STANDARD;
 
 import java.util.List;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestReporter;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -103,19 +104,51 @@ public class RoutingWithPrecomputedDataTest implements RaptorTestConstants {
   void twoTransfersRequired() {
 
     List<TestAccessEgress> access = List.of(
-      TestAccessEgress.free(12),
-      TestAccessEgress.free(13)
+      TestAccessEgress.free(102),
+      TestAccessEgress.free(103)
     );
 
     List<TestAccessEgress> egress = List.of(
-      TestAccessEgress.free(98),
-      TestAccessEgress.free(99)
+      TestAccessEgress.free(998),
+      TestAccessEgress.free(999)
     );
 
-    PrecomputedGridTransitDataProvider data = new PrecomputedGridTransitDataProvider();
+    PrecomputedGridTransitDataProvider data = new PrecomputedGridTransitDataProvider(100);
     var response = findTransitRoutes(
       access, egress,
       hm2time(10, 0), hm2time(14, 0),
+      5, data
+    );
+
+    assertFalse(response.noConnectionFound());
+
+    for (RaptorPath<TestTripSchedule> path : response.paths()) {
+      path.legStream().forEach(System.err::println);
+      System.out.println(path.toString(data.stopNameResolver()));
+    }
+
+  }
+
+  @Test
+  @Disabled
+  void twoTransfersRequired1000() {
+
+    List<TestAccessEgress> access = List.of(
+      TestAccessEgress.free(1002),
+      TestAccessEgress.free(1003),
+      TestAccessEgress.free(1004)
+    );
+
+    List<TestAccessEgress> egress = List.of(
+      TestAccessEgress.free(999997),
+      TestAccessEgress.free(999998),
+      TestAccessEgress.free(999999)
+    );
+
+    PrecomputedGridTransitDataProvider data = new PrecomputedGridTransitDataProvider(1000);
+    var response = findTransitRoutes(
+      access, egress,
+      hm2time(0, 0), hm2time(48, 0),
       5, data
     );
 
