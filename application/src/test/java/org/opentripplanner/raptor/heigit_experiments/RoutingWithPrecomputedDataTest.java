@@ -100,6 +100,35 @@ public class RoutingWithPrecomputedDataTest implements RaptorTestConstants {
   }
 
   @Test
+  void twoTransfersRequired() {
+
+    List<TestAccessEgress> access = List.of(
+      TestAccessEgress.free(12),
+      TestAccessEgress.free(13)
+    );
+
+    List<TestAccessEgress> egress = List.of(
+      TestAccessEgress.free(98),
+      TestAccessEgress.free(99)
+    );
+
+    PrecomputedGridTransitDataProvider data = new PrecomputedGridTransitDataProvider();
+    var response = findTransitRoutes(
+      access, egress,
+      hm2time(10, 0), hm2time(14, 0),
+      5, data
+    );
+
+    assertFalse(response.noConnectionFound());
+
+    for (RaptorPath<TestTripSchedule> path : response.paths()) {
+      path.legStream().forEach(System.err::println);
+      System.out.println(path.toString(data.stopNameResolver()));
+    }
+
+  }
+
+  @Test
   void transferRequiredForwardOnly() {
 
     List<TestAccessEgress> access = List.of(
