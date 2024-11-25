@@ -1,0 +1,7 @@
+
+* create tables with proper foreign keys from raw table?
+* convert strings to better data types?
+* introduce integer-based Ids instead of strings?
+* precompute joined tables for relevant methods of `org.opentripplanner.raptor.spi.RaptorTransitDataProvider`
+
+
