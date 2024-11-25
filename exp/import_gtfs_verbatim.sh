@@ -1,0 +1,1 @@
+duckdb -init import_gtfs.sql  gtfs_bkg.db
