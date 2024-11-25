@@ -11,7 +11,10 @@ public class TestTripPattern implements DefaultTripPattern {
   public static final byte WHEELCHAIR_MASK = 0b0100;
 
   private final String name;
-  private final int[] stopIndexes;
+
+  // Made public for visualization purposes
+  public final int[] stopIndexes;
+
   /**
    * By caching the index, we avoid looking up the pattern during routing, this reduces memory lookups and
    * improves the performance.
