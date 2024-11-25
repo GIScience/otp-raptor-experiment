@@ -1,0 +1,20 @@
+digraph {
+
+// NB: there is an idea plugin for instant visualization of dot files
+
+// TODO: needs to be completed
+
+    stop_times -> trips;
+    stop_times -> stops;
+
+    routes -> agency;
+
+    trips -> routes;
+    trips -> service;
+
+    transfers -> stops;
+    transfers -> stops;
+
+}
+
+
