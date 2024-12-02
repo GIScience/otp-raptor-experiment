@@ -11,9 +11,5 @@ open __gtfs_urls.csv
                   | unzip $"($line.name).zip" -d $"stops__($line.name)" stops.txt
       }
 
-#sum up the total length of all stops-files
-ls stops__* | get name
-    | each { |directory| open $"($directory)/stops.txt" | lines | length  }
-    | math sum
 
-
+wc -l stops__*/stops.txt | lines
