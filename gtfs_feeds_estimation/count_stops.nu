@@ -2,7 +2,7 @@
 
 # cleanup last run
 rm -rf stops__*
-rm *.zip
+rm -rf *.zip
 
 #download all gtfs archives and extract each stops-file
 open __gtfs_urls.csv
