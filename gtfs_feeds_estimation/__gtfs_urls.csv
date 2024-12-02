@@ -1,3 +1,4 @@
 name,url
-al,https://routing.spline.de/gtfs/al_tirana.gtfs.zip
-at_linz,https://routing.spline.de/gtfs/at_Linz-AG.gtfs.zip
+al_tirana,https://routing.spline.de/gtfs/al_tirana.gtfs.zip
+au_Translink-BUN,https://routing.spline.de/gtfs/au_Translink-BUN.gtfs.zip
+ba_Centrotrans,https://routing.spline.de/gtfs/ba_Centrotrans.gtfs.zip
