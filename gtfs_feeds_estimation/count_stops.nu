@@ -16,4 +16,7 @@ open gtfs_urls.csv
 
 wc -l stops__*/stops.txt | lines | sort
 
+# wc -l stops__*/stops.txt | lines | sort | to html | save world_stops_by_size.html
+
+
 
