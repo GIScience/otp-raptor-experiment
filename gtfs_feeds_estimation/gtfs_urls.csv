@@ -529,7 +529,7 @@ fr_horaires-theoriques-et-temps-reel-du-reseau-sarlatbus-gtfs-gtfs-rt,https://ro
 fr_horaires-theoriques-et-temps-reel-du-reseau-sitac-calais-gtfs-gtfs-rt,https://routing.spline.de/gtfs/fr_horaires-theoriques-et-temps-reel-du-reseau-sitac-calais-gtfs-gtfs-rt.gtfs.zip
 fr_horaires-theoriques-et-temps-reel-du-reseau-titus-rosny-sous-bois-gtfs-gtfs-rt,https://routing.spline.de/gtfs/fr_horaires-theoriques-et-temps-reel-du-reseau-titus-rosny-sous-bois-gtfs-gtfs-rt.gtfs.zip
 fr_horaires-theoriques-et-temps-reel-du-reseau-transavold-saint-avold-gtfs-gtfs-rt,https://routing.spline.de/gtfs/fr_horaires-theoriques-et-temps-reel-du-reseau-transavold-saint-avold-gtfs-gtfs-rt.gtfs.zip
-fr_horaires-theoriques-et-temps-reel-du-reseau-transports-urbains-mendois-mende-gtfs-gtfs-rt,https://routing.spline.de/gtfs/https://routing.spline.de/gtfs/fr_horaires-theoriques-et-temps-reel-du-reseau-transports-urbains-mendois-mende-gtfs-gtfs-rt.gtfs.zip
+fr_horaires-theoriques-et-temps-reel-du-reseau-transports-urbains-mendois-mende-gtfs-gtfs-rt,https://routing.spline.de/gtfs/fr_horaires-theoriques-et-temps-reel-du-reseau-transports-urbains-mendois-mende-gtfs-gtfs-rt.gtfs.zip
 fr_horaires-theoriques-et-temps-reel-gtfs-gtfs-rt-du-reseau-palmbus-cannes-pays-de-lerins,https://routing.spline.de/gtfs/fr_horaires-theoriques-et-temps-reel-gtfs-gtfs-rt-du-reseau-palmbus-cannes-pays-de-lerins.gtfs.zip
 fr_horaires-theoriques-et-temps-reel-reseau-mobius,https://routing.spline.de/gtfs/fr_horaires-theoriques-et-temps-reel-reseau-mobius.gtfs.zip
 fr_horaires-theoriques-et-temps-reels-du-reseau-de-transports-lagglo-en-bus-communaute-dagglomeration-gap-tallard-durance,https://routing.spline.de/gtfs/fr_horaires-theoriques-et-temps-reels-du-reseau-de-transports-lagglo-en-bus-communaute-dagglomeration-gap-tallard-durance.gtfs.zip
@@ -587,7 +587,6 @@ fr_programme-des-rotations-corsica-ferries,https://routing.spline.de/gtfs/fr_pro
 fr_referentiel-topologique-reseau-carsud,https://routing.spline.de/gtfs/fr_referentiel-topologique-reseau-carsud.gtfs.zip
 fr_regie-des-transports-baag-gtfs,https://routing.spline.de/gtfs/fr_regie-des-transports-baag-gtfs.gtfs.zip
 fr_remi-offre-theorique-mobilite-reseau-interurbain-regional,https://routing.spline.de/gtfs/fr_remi-offre-theorique-mobilite-reseau-interurbain-regional.gtfs.zip
-fr_rentree-2023-2024,https://routing.spline.de/gtfs/fr_rentree-2023-2024.gtfs.zip
 fr_reseau-a-citadina-porto-vecchio-horaires-theoriques-et-temps-reel,https://routing.spline.de/gtfs/fr_reseau-a-citadina-porto-vecchio-horaires-theoriques-et-temps-reel.gtfs.zip
 fr_reseau-bus-sete-agglopole-mobilite,https://routing.spline.de/gtfs/fr_reseau-bus-sete-agglopole-mobilite.gtfs.zip
 fr_reseau-cars-region-isere-38,https://routing.spline.de/gtfs/fr_reseau-cars-region-isere-38.gtfs.zip
@@ -757,7 +756,6 @@ it_Trentino-Extraurbano,https://routing.spline.de/gtfs/it_Trentino-Extraurbano.g
 it_Trentino-Urbano,https://routing.spline.de/gtfs/it_Trentino-Urbano.gtfs.zip
 it_Veneto-Venezia-Bus,https://routing.spline.de/gtfs/it_Veneto-Venezia-Bus.gtfs.zip
 it_Veneto-Venezia-Ferries,https://routing.spline.de/gtfs/it_Veneto-Venezia-Ferries.gtfs.zip
-lic,https://routing.spline.de/gtfs/license.json
 lt_alytus,https://routing.spline.de/gtfs/lt_alytus.gtfs.zip
 lt_druskininkai,https://routing.spline.de/gtfs/lt_druskininkai.gtfs.zip
 lt_kaunas,https://routing.spline.de/gtfs/lt_kaunas.gtfs.zip
