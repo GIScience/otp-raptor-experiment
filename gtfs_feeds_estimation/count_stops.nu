@@ -1,10 +1,5 @@
 
 
-                    # cleanup last run
-                    # rm -rf stops__*
-                    # rm -rf *.zip
-
-
 # download all gtfs archives and extract each stops-file
 open gtfs_urls.csv
     | each { |line| if ($"stops__($line.name)" | path exists) == false {
@@ -14,7 +9,7 @@ open gtfs_urls.csv
           } }
 
 
-wc -l stops__*/stops.txt | lines | sort
+wc -l stops__*/stops.txt | lines | sort -r
 
 # wc -l stops__*/stops.txt | lines | sort | to html | save world_stops_by_size.html
 
