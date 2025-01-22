@@ -4,4 +4,10 @@
 * introduce integer-based Ids instead of strings?
 * precompute joined tables for relevant methods of `org.opentripplanner.raptor.spi.RaptorTransitDataProvider`
 
+Warning: oltp-style queries need indices or other optimization, e.g.
+
+    select * from stop_times_joined where trip_id = 2405582;
+
+will take almost a second on a laptop....
+
 
